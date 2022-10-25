@@ -13,15 +13,17 @@ function Login() {
       <div>
         <form onSubmit={handleSubmit}>
           <h1>Login Page</h1>
-          <label>Username</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
+            id="username"
             value={user}
             onChange={(e) => setUser(e.target.value)}
           />
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

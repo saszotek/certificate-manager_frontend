@@ -1,13 +1,22 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/Login";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Login from "./components/Login/Login";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
   return (
     <Router>
       <>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
           <Route exact path="/login" element={<Login />} />
         </Routes>
       </>
