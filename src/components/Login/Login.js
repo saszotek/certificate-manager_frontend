@@ -1,11 +1,34 @@
 import React, { useState } from "react";
+import { useLocalState } from "../../util/useLocalState";
 
 function Login() {
-  const [user, setUser] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  /* eslint-disable */
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+  };
+
+  const sendLoginRequest = () => {
+    const reqBody = {
+      username: username,
+      password: password,
+    };
+
+    fetch("api/auth/login", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "post",
+      body: JSON.stringify(reqBody),
+    })
+      .then((response) => Promise.all([response.json(), response.headers]))
+      .then(([body, headers]) => {
+        setJwt(headers.get("authorization"));
+      });
   };
 
   return (
@@ -17,8 +40,8 @@ function Login() {
           <input
             type="text"
             id="username"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <label htmlFor="password">Password</label>
           <input
@@ -27,10 +50,12 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Send</button>
+          <button type="submit" id="submit" onClick={sendLoginRequest}>
+            Send
+          </button>
         </form>
       </div>
-      <div>{user}</div>
+      <div>{username}</div>
       <div>{password}</div>
     </div>
   );
