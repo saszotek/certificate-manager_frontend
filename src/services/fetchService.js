@@ -1,4 +1,4 @@
-function ajax(url, requestMethod, jwt, requestBody) {
+function fetchService(url, requestMethod, jwt, requestBody) {
   const fetchData = {
     headers: {
       "Content-Type": "application/json",
@@ -19,4 +19,4 @@ function ajax(url, requestMethod, jwt, requestBody) {
   });
 }
 
-export default ajax;
+export default fetchService;
