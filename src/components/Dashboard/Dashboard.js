@@ -13,6 +13,7 @@ function Dashboard() {
         Our JWT token is <div>{jwt}</div>
       </div>
       <Link to="/login">Login pageee</Link>
+      <Link to="/register">Login pageee</Link>
     </div>
   );
 }

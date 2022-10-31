@@ -1,42 +1,33 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useLocalState } from "../../util/useLocalState";
 
-function Login() {
+function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  /* eslint-disable */
-  const [jwt, setJwt] = useLocalState("", "jwt");
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
 
-  const sendLoginRequest = () => {
+  const sendRegisterRequest = () => {
     const reqBody = {
       username: username,
       password: password,
     };
 
-    fetch("api/auth/login", {
+    fetch("api/auth/register", {
       headers: {
         "Content-Type": "application/json",
       },
       method: "post",
       body: JSON.stringify(reqBody),
-    })
-      .then((response) => Promise.all([response.json(), response.headers]))
-      .then(([body, headers]) => {
-        setJwt(headers.get("authorization"));
-      });
+    });
   };
 
   return (
     <div>
       <div>
         <form onSubmit={handleSubmit}>
-          <h1>Login Page</h1>
+          <h1>Register Page</h1>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -51,13 +42,10 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" id="submit" onClick={sendLoginRequest}>
+          <button type="submit" id="submit" onClick={sendRegisterRequest}>
             Send
           </button>
         </form>
-      </div>
-      <div>
-        <Link to="/register">Go to register page!</Link>
       </div>
       <div>{username}</div>
       <div>{password}</div>
@@ -65,4 +53,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
