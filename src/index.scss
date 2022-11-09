@@ -1,3 +1,6 @@
+@use './styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,11 +9,10 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: variables.$font-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: variables.$background-color-primary;
 }
 
 code {

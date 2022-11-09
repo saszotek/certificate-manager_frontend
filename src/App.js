@@ -7,21 +7,19 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 function App() {
   return (
     <Router>
-      <>
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/register" element={<Register />} />
-        </Routes>
-      </>
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+      </Routes>
     </Router>
   );
 }

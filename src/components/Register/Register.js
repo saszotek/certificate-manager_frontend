@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../../styles/login.scss";
+import Button from "../Button/Button";
+import Input from "../Input/Input";
 
 function Register() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  };
 
-  const sendRegisterRequest = () => {
     const reqBody = {
       username: username,
       password: password,
@@ -24,31 +27,33 @@ function Register() {
   };
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <h1>Register Page</h1>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+    <div className="login-container">
+      <h1>Register Page</h1>
+      <form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          id="username"
+          value={username}
+          onChange={setUsername}
+          label="Username"
+        />
+        <Input
+          type="password"
+          id="password"
+          value={password}
+          onChange={setPassword}
+          label="Password"
+        />
+        <div className="login-container__button-box">
+          <Button type="submit" id="submit" text="Sign up" />
+          <Button
+            type="button"
+            id="login"
+            text="Sign in"
+            onClick={() => navigate("/login")}
           />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit" id="submit" onClick={sendRegisterRequest}>
-            Send
-          </button>
-        </form>
-      </div>
-      <div>{username}</div>
-      <div>{password}</div>
+        </div>
+      </form>
     </div>
   );
 }

@@ -1,0 +1,32 @@
+@use 'variables';
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 500px;
+        padding: 50px 70px;
+        color: #fff;
+        background-color: variables.$background-color-secondary;
+        border-radius: 35px;
+
+        .input-container {
+            margin: 35px 0;
+        }
+
+        .login-container__button-box {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            margin: 0 auto;
+        }
+    }
+}

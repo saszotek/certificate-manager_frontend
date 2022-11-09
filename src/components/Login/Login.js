@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useLocalState } from "../../util/useLocalState";
+import "../../styles/login.scss";
+import Input from "../Input/Input";
+import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,9 +15,7 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  };
 
-  const sendLoginRequest = () => {
     const reqBody = {
       username: username,
       password: password,
@@ -33,34 +35,34 @@ function Login() {
   };
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <h1>Login Page</h1>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+    <div className="login-container">
+      <h1>Login Page</h1>
+      <form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          id="username"
+          value={username}
+          onChange={setUsername}
+          label="Username"
+        />
+        <Input
+          type="password"
+          id="password"
+          value={password}
+          onChange={setPassword}
+          label="Password"
+        />
+
+        <div className="login-container__button-box">
+          <Button type="submit" id="submit" text="Sign in" />
+          <Button
+            type="button"
+            id="register"
+            text="Sign up"
+            onClick={() => navigate("/register")}
           />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit" id="submit" onClick={sendLoginRequest}>
-            Send
-          </button>
-        </form>
-      </div>
-      <div>
-        <Link to="/register">Go to register page!</Link>
-      </div>
-      <div>{username}</div>
-      <div>{password}</div>
+        </div>
+      </form>
     </div>
   );
 }
