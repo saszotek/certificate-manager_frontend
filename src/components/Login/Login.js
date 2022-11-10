@@ -1,4 +1,9 @@
+// TODO:
+// redirect to /home after successful log in
+// handle error messages with status codes
+
 import React, { useState } from "react";
+import axios from "axios";
 import { useLocalState } from "../../util/useLocalState";
 import "../../styles/login.scss";
 import Input from "../Input/Input";
@@ -21,23 +26,25 @@ function Login() {
       password: password,
     };
 
-    fetch("api/auth/login", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "post",
-      body: JSON.stringify(reqBody),
-    })
-      .then((response) => Promise.all([response.json(), response.headers]))
-      .then(([body, headers]) => {
-        setJwt(headers.get("authorization"));
+    axios
+      .post("api/auth/login", reqBody)
+      .then((response) => {
+        setJwt(response.headers.get("authorization"));
+        console.log(`Login success! Status: ${response.status}`);
+        // if (jwt !== "") {
+        //   navigate("/home");
+        // }
+      })
+      .catch((error) => {
+        console.log(`Login failed! Status: ${error.response.status}`);
       });
   };
 
   return (
     <div className="login-container">
-      <h1>Login Page</h1>
       <form onSubmit={handleSubmit}>
+        <h1>Log in</h1>
+        <h1>Log in</h1>
         <Input
           type="text"
           id="username"
@@ -54,7 +61,7 @@ function Login() {
         />
 
         <div className="login-container__button-box">
-          <Button type="submit" id="submit" text="Sign in" />
+          <Button type="submit" id="submit" text="Log in" />
           <Button
             type="button"
             id="register"

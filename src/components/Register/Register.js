@@ -1,4 +1,9 @@
+// TODO:
+// validation on form
+// handle error messages with status codes
+
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/login.scss";
 import Button from "../Button/Button";
@@ -8,6 +13,7 @@ function Register() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,19 +23,29 @@ function Register() {
       password: password,
     };
 
-    fetch("api/auth/register", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "post",
-      body: JSON.stringify(reqBody),
-    });
+    if (!(password === passwordConfirm)) {
+      console.log("passwords doesn't match!");
+      return false;
+    }
+
+    axios
+      .post("api/auth/register", reqBody)
+      .then((response) => {
+        if (response.status === 201) {
+          console.log(`Registration successful ${response.status}`);
+          navigate("/login");
+        }
+      })
+      .catch((error) => {
+        console.log(`Registration failed! Status: ${error.response.status}`);
+      });
   };
 
   return (
     <div className="login-container">
-      <h1>Register Page</h1>
       <form onSubmit={handleSubmit}>
+        <h1>Sign up</h1>
+        <h1>Sign up</h1>
         <Input
           type="text"
           id="username"
@@ -44,12 +60,19 @@ function Register() {
           onChange={setPassword}
           label="Password"
         />
+        <Input
+          type="password"
+          id="passwordConfirm"
+          value={passwordConfirm}
+          onChange={setPasswordConfirm}
+          label="Password confirmation"
+        />
         <div className="login-container__button-box">
           <Button type="submit" id="submit" text="Sign up" />
           <Button
             type="button"
             id="login"
-            text="Sign in"
+            text="Log in"
             onClick={() => navigate("/login")}
           />
         </div>
