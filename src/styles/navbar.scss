@@ -1,0 +1,64 @@
+@use 'variables';
+
+.navbar-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    padding: 8px calc((100vw - 1000px) / 2);
+    background-color: variables.$background-color-fourth;
+    z-index: 10;
+
+    .navbar-container__navlink {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 16px;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .navbar-container__navlink-active {
+        color: variables.$background-color-third;
+    }
+
+    .navbar-container__hamburger-menu {
+        display: none;
+        color: #fff;
+
+        @media screen and (max-width: 768px) {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(-100%, 50%);
+            font-size: 29px;
+            cursor: pointer;
+        }
+    }
+
+    .navbar-container__list-menu {
+        display: flex;
+        align-items: center;
+        margin-right: -24px;
+        font-size: 18px;
+
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    .navbar-container__button {
+        display: flex;
+        align-items: center;
+        margin-right: 24px;
+
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+}
+

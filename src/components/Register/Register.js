@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/login.scss";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
+import Navbar from "../Navbar/Navbar";
 
 function Register() {
   const navigate = useNavigate();
@@ -42,42 +43,45 @@ function Register() {
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit}>
-        <h1>Sign up</h1>
-        <h1>Sign up</h1>
-        <Input
-          type="text"
-          id="username"
-          value={username}
-          onChange={setUsername}
-          label="Username"
-        />
-        <Input
-          type="password"
-          id="password"
-          value={password}
-          onChange={setPassword}
-          label="Password"
-        />
-        <Input
-          type="password"
-          id="passwordConfirm"
-          value={passwordConfirm}
-          onChange={setPasswordConfirm}
-          label="Password confirmation"
-        />
-        <div className="login-container__button-box">
-          <Button type="submit" id="submit" text="Sign up" />
-          <Button
-            type="button"
-            id="login"
-            text="Log in"
-            onClick={() => navigate("/login")}
+    <>
+      <Navbar />
+      <div className="login-container">
+        <form onSubmit={handleSubmit}>
+          <h1>Sign up</h1>
+          <h1>Sign up</h1>
+          <Input
+            type="text"
+            id="username"
+            value={username}
+            onChange={setUsername}
+            label="Username"
           />
-        </div>
-      </form>
-    </div>
+          <Input
+            type="password"
+            id="password"
+            value={password}
+            onChange={setPassword}
+            label="Password"
+          />
+          <Input
+            type="password"
+            id="passwordConfirm"
+            value={passwordConfirm}
+            onChange={setPasswordConfirm}
+            label="Password confirmation"
+          />
+          <div className="login-container__button-box">
+            <Button type="submit" id="submit" text="Sign up" />
+            <Button
+              type="button"
+              id="login"
+              text="Log in"
+              onClick={() => navigate("/login")}
+            />
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 

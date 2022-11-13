@@ -9,6 +9,7 @@ import "../../styles/login.scss";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 function Login() {
   const navigate = useNavigate();
@@ -41,36 +42,39 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit}>
-        <h1>Log in</h1>
-        <h1>Log in</h1>
-        <Input
-          type="text"
-          id="username"
-          value={username}
-          onChange={setUsername}
-          label="Username"
-        />
-        <Input
-          type="password"
-          id="password"
-          value={password}
-          onChange={setPassword}
-          label="Password"
-        />
-
-        <div className="login-container__button-box">
-          <Button type="submit" id="submit" text="Log in" />
-          <Button
-            type="button"
-            id="register"
-            text="Sign up"
-            onClick={() => navigate("/register")}
+    <>
+      <Navbar />
+      <div className="login-container">
+        <form onSubmit={handleSubmit}>
+          <h1>Log in</h1>
+          <h1>Log in</h1>
+          <Input
+            type="text"
+            id="username"
+            value={username}
+            onChange={setUsername}
+            label="Username"
           />
-        </div>
-      </form>
-    </div>
+          <Input
+            type="password"
+            id="password"
+            value={password}
+            onChange={setPassword}
+            label="Password"
+          />
+
+          <div className="login-container__button-box">
+            <Button type="submit" id="submit" text="Log in" />
+            <Button
+              type="button"
+              id="register"
+              text="Sign up"
+              onClick={() => navigate("/register")}
+            />
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 
