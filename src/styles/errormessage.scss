@@ -1,0 +1,14 @@
+@use 'variables';
+
+.error-container {
+    width: 100%;
+    margin: 10px 0;
+    background-color: #c96f6f;
+    border-radius: 10px;
+
+    p {
+        padding: 7px 10px;
+        font-size: 16px;
+        color: #fff;
+    }
+}

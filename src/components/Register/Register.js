@@ -1,7 +1,3 @@
-// TODO:
-// validation on form
-// handle error messages with status codes
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,12 +5,14 @@ import "../../styles/login.scss";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Navbar from "../Navbar/Navbar";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 function Register() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,8 +22,8 @@ function Register() {
       password: password,
     };
 
-    if (!(password === passwordConfirm)) {
-      console.log("passwords doesn't match!");
+    if (password !== passwordConfirm) {
+      setErrorMessage("Passwords should match!");
       return false;
     }
 
@@ -39,6 +37,7 @@ function Register() {
       })
       .catch((error) => {
         console.log(`Registration failed! Status: ${error.response.status}`);
+        setErrorMessage("Username is already taken!");
       });
   };
 
@@ -49,12 +48,14 @@ function Register() {
         <form onSubmit={handleSubmit}>
           <h1>Sign up</h1>
           <h1>Sign up</h1>
+          {errorMessage && <ErrorMessage message={errorMessage} />}
           <Input
             type="text"
             id="username"
             value={username}
             onChange={setUsername}
             label="Username"
+            minLength="4"
           />
           <Input
             type="password"
@@ -62,6 +63,7 @@ function Register() {
             value={password}
             onChange={setPassword}
             label="Password"
+            minLength="4"
           />
           <Input
             type="password"
@@ -69,6 +71,7 @@ function Register() {
             value={passwordConfirm}
             onChange={setPasswordConfirm}
             label="Password confirmation"
+            minLength="4"
           />
           <div className="login-container__button-box">
             <Button type="submit" id="submit" text="Sign up" />

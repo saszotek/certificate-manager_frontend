@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/input.scss";
 
 function Input(props) {
-  const { type, id, value, onChange, label } = props;
+  const { type, id, value, onChange, label, minLength } = props;
 
   return (
     <div className="input-container">
@@ -12,6 +12,8 @@ function Input(props) {
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        minLength={minLength}
+        required
       />
     </div>
   );

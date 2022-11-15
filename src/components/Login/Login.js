@@ -1,6 +1,5 @@
 // TODO:
 // redirect to /home after successful log in
-// handle error messages with status codes
 
 import React, { useState } from "react";
 import axios from "axios";
@@ -10,11 +9,13 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isError, setIsError] = useState(false);
 
   /* eslint-disable */
   const [jwt, setJwt] = useLocalState("", "jwt");
@@ -32,12 +33,16 @@ function Login() {
       .then((response) => {
         setJwt(response.headers.get("authorization"));
         console.log(`Login success! Status: ${response.status}`);
+        setIsError(false);
         // if (jwt !== "") {
         //   navigate("/home");
         // }
       })
       .catch((error) => {
         console.log(`Login failed! Status: ${error.response.status}`);
+        if (error.response.status === 401) {
+          setIsError(true);
+        }
       });
   };
 
@@ -48,6 +53,9 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <h1>Log in</h1>
           <h1>Log in</h1>
+          {isError && (
+            <ErrorMessage message="Username or password was incorrect. Please try again." />
+          )}
           <Input
             type="text"
             id="username"
