@@ -7,7 +7,7 @@ import {
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
+// import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -18,9 +18,9 @@ function App() {
           exact
           path="/home"
           element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
+            // <PrivateRoute>
+            <Dashboard />
+            // </PrivateRoute>
           }
         />
         <Route exact path="/login" element={<Login />} />

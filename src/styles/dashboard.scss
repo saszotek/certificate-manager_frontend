@@ -1,0 +1,83 @@
+@use 'variables';
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1100px;
+    height: 100vh;
+    margin: 0 auto;
+
+    .dashboard-container__wrapper {
+        position: relative;
+        width: 85%;
+        padding-bottom: 50px;
+        border-left: 3px solid variables.$background-color-fifth;
+        border-bottom: 3px solid variables.$background-color-fifth;
+        border-right: 3px solid variables.$background-color-fifth;
+        border-top: 3px solid variables.$background-color-fifth;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            height: 3px;
+            width: 30%;
+            border-bottom: 3px solid variables.$background-color-primary;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -3px;
+            width: 30%;
+            border-bottom: 3px solid variables.$background-color-primary;
+        }
+
+        .dashboard-container__wrapper__title-box {
+            position: relative;
+            padding: 25px 25px 15px 25px;
+            border-radius: 0px 25px 0px 15px;
+            border-bottom: 3px solid variables.$background-color-fifth;
+
+            &::before {
+                content: "";
+                position: absolute;
+                right: 0;
+                bottom: -3px;
+                height: 3px;
+                width: 30%;
+                border-bottom: 3px solid variables.$background-color-primary;
+            }
+
+            h1 {
+                color: variables.$background-color-fourth;
+                font-size: 30px;
+                font-weight: 400;
+            }
+        }
+
+        .dashboard-container__wrapper__button-box {
+            position: relative;
+            padding: 0 25px;
+            border-radius: 0px 25px 0px 15px;
+            border-bottom: 3px solid variables.$background-color-fifth;
+
+            &::before {
+                content: "";
+                position: absolute;
+                right: 0;
+                bottom: -3px;
+                height: 3px;
+                width: 70%;
+                border-bottom: 3px solid variables.$background-color-primary;
+            }
+
+            &:last-of-type {
+                padding-left: 90px;
+            }
+        }
+    }
+}
