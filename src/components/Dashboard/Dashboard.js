@@ -1,75 +1,60 @@
-// import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/dashboard.scss";
 import Button from "../Button/Button";
 import Navbar from "../Navbar/Navbar";
-// import { useLocalState } from "../../util/useLocalState";
+import { useLocalState } from "../../util/useLocalState";
+import { useSelector, useDispatch } from "react-redux";
+import { verifyToken } from "../../state/actions";
 
 function Dashboard() {
   /* eslint-disable */
-  // const [dataPersons, setDataPersons] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  // const [jwt, setJwt] = useLocalState("", "jwt");
-
-  // const headers = {
-  //   headers: {
-  //     Authorization: `Bearer ${jwt}`,
-  //   },
-  // };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await axios
-  //       .get("api/person/find/all", headers)
-  //       .then((response) => {
-  //         console.log(response);
-  //         setDataPersons(response.data);
-  //         setLoading(false);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   };
-
-  //   fetchData();
-  // }, []);
-
+  const [loading, setLoading] = useState(true);
+  const [jwt, setJwt] = useLocalState("", "jwt");
+  const isLogged = useSelector((state) => state.loggedReducer);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogIn = () => {
-    navigate("/login");
-  };
+  useEffect(() => {
+    if (jwt) {
+      dispatch(verifyToken(jwt));
+    }
 
-  const handleSignUp = () => {
-    navigate("/register");
-  };
+    setLoading(false);
+  }, []);
 
   return (
     <>
       <Navbar />
-      <div className="dashboard-container">
-        {/* {loading && <div>Loading screen</div>}
-        {!loading && (
-          <div>
-            {dataPersons.map((item) => (
-              <div key={item.id}>{JSON.stringify(item)}</div>
-            ))}
-          </div>
-        )} */}
-
-        <div className="dashboard-container__wrapper">
-          <div className="dashboard-container__wrapper__title-box">
-            <h1>What would you like to do first?</h1>
-          </div>
-          <div className="dashboard-container__wrapper__button-box">
-            <Button onClick={handleLogIn} text="Log in" color="true" />
-          </div>
-          <div className="dashboard-container__wrapper__button-box">
-            <Button onClick={handleSignUp} text="Sign up" color="true" />
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="dashboard-container">
+          <div className="dashboard-container__wrapper">
+            <div className="dashboard-container__wrapper__title-box">
+              <h1>
+                {isLogged
+                  ? "What would you like to do?"
+                  : "Log in or create an account first"}
+              </h1>
+            </div>
+            <div className="dashboard-container__wrapper__button-box">
+              <Button
+                onClick={() => navigate("/login")}
+                text="Log in"
+                color="true"
+              />
+            </div>
+            <div className="dashboard-container__wrapper__button-box">
+              <Button
+                onClick={() => navigate("/register")}
+                text="Sign up"
+                color="true"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

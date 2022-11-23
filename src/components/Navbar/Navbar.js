@@ -17,58 +17,27 @@ function Navbar() {
 
   return (
     <div className="navbar-container">
-      <NavLink
-        className={({ isActive }) =>
-          "navbar-container__navlink" +
-          (isActive ? " navbar-container__navlink-active" : "")
-        }
-        to="/home"
-      >
+      <NavLink className="navbar-container__navlink" to="/home">
         <h1>Certy</h1>
       </NavLink>
       <div className="navbar-container__hamburger-menu">
         <FontAwesomeIcon icon={icons.faBars} />
       </div>
-      <div className="navbar-container__list-menu">
-        <NavLink
-          className={({ isActive }) =>
-            "navbar-container__navlink" +
-            (isActive ? " navbar-container__navlink-active" : "")
-          }
-          to="/login"
-        >
-          Login
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            "navbar-container__navlink" +
-            (isActive ? " navbar-container__navlink-active" : "")
-          }
-          to="/login"
-        >
-          Login
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            "navbar-container__navlink" +
-            (isActive ? " navbar-container__navlink-active" : "")
-          }
-          to="/login"
-        >
-          Login
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            "navbar-container__navlink" +
-            (isActive ? " navbar-container__navlink-active" : "")
-          }
-          to="/login"
-        >
-          Log in
-        </NavLink>
-      </div>
-      <div className="navbar-container__button">
-        <Button onClick={handleSignUp} text="Sign up" />
+      <div className="navbar-container__links-box">
+        <div className="navbar-container__links-box__list-menu">
+          <NavLink
+            className={({ isActive }) =>
+              "navbar-container__navlink" +
+              (isActive ? " navbar-container__navlink-active" : "")
+            }
+            to="/login"
+          >
+            Log in
+          </NavLink>
+        </div>
+        <div className="navbar-container__links-box__button">
+          <Button onClick={handleSignUp} text="Sign up" />
+        </div>
       </div>
     </div>
   );
