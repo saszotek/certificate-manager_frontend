@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/login.scss";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import Navbar from "../Navbar/Navbar";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 function Register() {
@@ -43,7 +42,6 @@ function Register() {
 
   return (
     <>
-      <Navbar />
       <div className="login-container">
         <form onSubmit={handleSubmit}>
           <h1>Sign up</h1>

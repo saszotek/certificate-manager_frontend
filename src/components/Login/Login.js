@@ -1,6 +1,3 @@
-// TODO:
-// redirect to /home after successful log in
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useLocalState } from "../../util/useLocalState";
@@ -8,7 +5,6 @@ import "../../styles/login.scss";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../Navbar/Navbar";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 function Login() {
@@ -48,7 +44,6 @@ function Login() {
 
   return (
     <>
-      <Navbar />
       <div className="login-container">
         <form onSubmit={handleSubmit}>
           <h1>Log in</h1>
