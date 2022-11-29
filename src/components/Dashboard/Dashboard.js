@@ -29,7 +29,8 @@ function Dashboard() {
 
   return (
     <>
-      {loading || statusLoggedLocal === "idle" ? (
+      {loading &&
+      (statusLoggedLocal === "succeeded" || statusLoggedLocal === "failed") ? (
         <div>Loading...</div>
       ) : (
         <div className="dashboard-container">

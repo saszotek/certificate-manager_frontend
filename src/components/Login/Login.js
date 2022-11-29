@@ -6,6 +6,8 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { useSelector } from "react-redux";
+import { isLogged } from "../../redux/slices/validateTokenSlice";
 
 function Login() {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ function Login() {
 
   /* eslint-disable */
   const [jwt, setJwt] = useLocalState("", "jwt");
+  const isLoggedLocal = useSelector(isLogged);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,9 +33,7 @@ function Login() {
         setJwt(response.headers.get("authorization"));
         console.log(`Login success! Status: ${response.status}`);
         setIsError(false);
-        // if (jwt !== "") {
-        //   navigate("/home");
-        // }
+        window.location.reload();
       })
       .catch((error) => {
         console.log(`Login failed! Status: ${error.response.status}`);
