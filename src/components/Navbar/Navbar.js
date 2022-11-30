@@ -26,6 +26,12 @@ function Navbar() {
     }
   }, [statusLoggedLocal, dispatch]);
 
+  const handleLogout = () => {
+    setJwt("");
+    window.location.reload();
+    navigate("/home");
+  };
+
   return (
     <div className="navbar-container">
       <NavLink className="navbar-container__navlink" to="/home">
@@ -62,7 +68,7 @@ function Navbar() {
         )}
         <div className="navbar-container__links-box__button">
           {isLoggedLocal ? (
-            <Button onClick={() => navigate("/home")} text="Log out" />
+            <Button onClick={handleLogout} text="Log out" />
           ) : (
             <Button onClick={() => navigate("/register")} text="Sign up" />
           )}

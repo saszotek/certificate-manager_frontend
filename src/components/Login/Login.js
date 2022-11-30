@@ -6,18 +6,14 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import { useSelector } from "react-redux";
-import { isLogged } from "../../redux/slices/validateTokenSlice";
 
 function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
-
   /* eslint-disable */
   const [jwt, setJwt] = useLocalState("", "jwt");
-  const isLoggedLocal = useSelector(isLogged);
 
   const handleSubmit = (event) => {
     event.preventDefault();

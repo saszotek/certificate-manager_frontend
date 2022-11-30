@@ -12,7 +12,7 @@ import {
 
 function Dashboard() {
   /* eslint-disable */
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [jwt, setJwt] = useLocalState("", "jwt");
   const isLoggedLocal = useSelector(isLogged);
   const statusLoggedLocal = useSelector(statusLogged);
@@ -24,13 +24,13 @@ function Dashboard() {
       dispatch(validateJwt(jwt));
     }
 
-    setLoading(false);
+    setIsLoading(false);
   }, [statusLoggedLocal, dispatch]);
 
   return (
     <>
-      {loading &&
-      (statusLoggedLocal === "succeeded" || statusLoggedLocal === "failed") ? (
+      {isLoading &&
+      (statusLoggedLocal === "loading" || statusLoggedLocal === "idle") ? (
         <div>Loading...</div>
       ) : (
         <div className="dashboard-container">
