@@ -2,44 +2,44 @@ import React from "react";
 import "../../styles/personaldatails.scss";
 import ButtonThree from "../Button/ButtonThree";
 
-function PersonalDatails() {
+function PersonalDatails({ personDetailsLocal }) {
   return (
     <div className="personal-datails-container">
       <div className="personal-datails-container__wrapper">
         <div className="personal-datails-container__wrapper__box">
           <div>
             <p>First name</p>
-            <p>Maciej</p>
+            <p>{personDetailsLocal.firstName}</p>
           </div>
           <div>
             <p>Pesel</p>
-            <p>123123123123</p>
+            <p>{personDetailsLocal.pesel}</p>
           </div>
           <div>
             <p>E-mail</p>
-            <p>email@gmail.com</p>
+            <p>{personDetailsLocal.email}</p>
           </div>
           <div>
             <p>City</p>
-            <p>Katowice</p>
+            <p>{personDetailsLocal.city}</p>
           </div>
         </div>
         <div className="personal-datails-container__wrapper__box">
           <div>
             <p>Last name</p>
-            <p>Kowalski</p>
+            <p>{personDetailsLocal.lastName}</p>
           </div>
           <div>
             <p>Phone number</p>
-            <p>321321321</p>
+            <p>{personDetailsLocal.phoneNumber}</p>
           </div>
           <div>
             <p>Residential Address</p>
-            <p>Słoneczna 2</p>
+            <p>{personDetailsLocal.residentialAddress}</p>
           </div>
           <div>
             <p>Postal code</p>
-            <p>43-100</p>
+            <p>{personDetailsLocal.postalCode}</p>
           </div>
         </div>
       </div>

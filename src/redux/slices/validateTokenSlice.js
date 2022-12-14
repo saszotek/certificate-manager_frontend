@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialState = {
   isLogged: false,
+  userDetails: null,
   status: "idle",
 };
 
@@ -15,7 +16,11 @@ export const validateJwt = createAsyncThunk(
         Authorization: `Bearer ${jwt}`,
       },
     });
-    return response.data;
+    const res = {
+      status: response.status,
+      data: response.data,
+    };
+    return res;
   }
 );
 
@@ -30,16 +35,24 @@ export const validateTokenSlice = createSlice({
       })
       .addCase(validateJwt.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.isLogged = action.payload;
+        if (action.payload.status === 200) {
+          state.isLogged = true;
+          state.userDetails = action.payload.data;
+        } else {
+          state.isLogged = false;
+          state.userDetails = null;
+        }
       })
       .addCase(validateJwt.rejected, (state, action) => {
         state.status = "failed";
         state.isLogged = false;
+        state.userDetails = null;
       });
   },
 });
 
 export const isLogged = (state) => state.validateToken.isLogged;
+export const userDetails = (state) => state.validateToken.userDetails;
 export const statusLogged = (state) => state.validateToken.status;
 
 export const { validate } = validateTokenSlice.actions;

@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   validateJwt,
   isLogged,
+  userDetails,
   statusLogged,
 } from "../../redux/slices/validateTokenSlice";
 import { fetchPersonDetails } from "../../redux/slices/fetchPersonDetailsSlice";
@@ -16,6 +17,7 @@ function Dashboard() {
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const isLoggedLocal = useSelector(isLogged);
+  const userDetailsLocal = useSelector(userDetails);
   const statusLoggedLocal = useSelector(statusLogged);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,10 +29,10 @@ function Dashboard() {
   }, [statusLoggedLocal, dispatch, jwt]);
 
   useEffect(() => {
-    if (jwt) {
-      dispatch(fetchPersonDetails({ jwt: jwt, userId: 1 }));
+    if (statusLoggedLocal === "succeeded") {
+      dispatch(fetchPersonDetails({ jwt: jwt, userId: userDetailsLocal.id }));
     }
-  }, [dispatch, jwt]);
+  }, [dispatch, jwt, statusLoggedLocal, userDetailsLocal]);
 
   return (
     <>

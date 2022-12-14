@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/payment.scss";
 import ButtonThree from "../Button/ButtonThree";
 
-function Payment() {
+function Payment({ personDetailsLocal }) {
   return (
     <div className="payment-container">
       <div className="payment-container__wrapper">

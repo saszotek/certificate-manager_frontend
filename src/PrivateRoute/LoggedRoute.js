@@ -5,15 +5,19 @@ import fetchService from "../services/fetchService";
 import { useLocalState } from "../util/useLocalState";
 
 const LoggedRoute = ({ children }) => {
-  /* eslint-disable */
+  // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [isLoading, setIsLoading] = useState(true);
   const [isValid, setIsValid] = useState(null);
 
   if (jwt) {
     fetchService(`/api/auth/validate?token=${jwt}`, "get", jwt).then(
-      (isValid) => {
-        setIsValid(isValid);
+      (response) => {
+        if (response.id !== null) {
+          setIsValid(true);
+        } else {
+          setIsValid(false);
+        }
         setIsLoading(false);
       }
     );
