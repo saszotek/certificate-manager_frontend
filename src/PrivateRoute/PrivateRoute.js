@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
+import Loader from "../components/Loader/Loader";
 import fetchService from "../services/fetchService";
 import { useLocalState } from "../util/useLocalState";
 
@@ -21,7 +22,7 @@ export const PrivateRoute = ({ children }) => {
   }
 
   return isLoading ? (
-    <div>Loading...</div>
+    <Loader />
   ) : isValid === true ? (
     children
   ) : (

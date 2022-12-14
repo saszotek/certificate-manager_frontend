@@ -7,9 +7,10 @@ import {
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
 import Register from "./components/Register/Register";
 import LoggedRoute from "./PrivateRoute/LoggedRoute";
-// import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -18,15 +19,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Navigate replace to="/home" />} />
-          <Route
-            exact
-            path="/home"
-            element={
-              // <PrivateRoute>
-              <Dashboard />
-              // </PrivateRoute>
-            }
-          />
+          <Route exact path="/home" element={<Dashboard />} />
           <Route
             exact
             path="/login"
@@ -43,6 +36,15 @@ function App() {
               <LoggedRoute>
                 <Register />
               </LoggedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
             }
           />
         </Routes>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useLocalState } from "../../util/useLocalState";
 import "../../styles/login.scss";
 import Input from "../Input/Input";
-import Button from "../Button/Button";
+import ButtonOne from "../Button/ButtonOne";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
@@ -64,8 +64,8 @@ function Login() {
           />
 
           <div className="login-container__button-box">
-            <Button type="submit" id="submit" text="Log in" />
-            <Button
+            <ButtonOne type="submit" id="submit" text="Log in" />
+            <ButtonOne
               type="button"
               id="register"
               text="Sign up"

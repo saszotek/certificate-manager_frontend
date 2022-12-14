@@ -1,0 +1,29 @@
+@use 'variables';
+
+.button-custom-three {
+    position: relative;
+    padding: 13px 0;
+    font-size: 18px;
+    letter-spacing: variables.$letter-spacing-primary;
+    color: variables.$background-color-fifth;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;     
+        display: block;
+        height: 2px;
+        width: calc(50% - 1.5px);
+        background-color: variables.$background-color-fifth;
+        transition: width 0.2s ease-out;
+    }
+
+    &:hover::after {
+        width: 100%;
+    }
+}

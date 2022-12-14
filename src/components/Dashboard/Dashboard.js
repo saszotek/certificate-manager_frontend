@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/dashboard.scss";
-import Button from "../Button/Button";
+import ButtonOne from "../Button/ButtonOne";
 import { useLocalState } from "../../util/useLocalState";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -9,10 +9,11 @@ import {
   isLogged,
   statusLogged,
 } from "../../redux/slices/validateTokenSlice";
+import { fetchPersonDetails } from "../../redux/slices/fetchPersonDetailsSlice";
+import Loader from "../Loader/Loader";
 
 function Dashboard() {
-  /* eslint-disable */
-  const [isLoading, setIsLoading] = useState(true);
+  // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const isLoggedLocal = useSelector(isLogged);
   const statusLoggedLocal = useSelector(statusLogged);
@@ -23,15 +24,18 @@ function Dashboard() {
     if (statusLoggedLocal === "idle") {
       dispatch(validateJwt(jwt));
     }
+  }, [statusLoggedLocal, dispatch, jwt]);
 
-    setIsLoading(false);
-  }, [statusLoggedLocal, dispatch]);
+  useEffect(() => {
+    if (jwt) {
+      dispatch(fetchPersonDetails({ jwt: jwt, userId: 1 }));
+    }
+  }, [dispatch, jwt]);
 
   return (
     <>
-      {isLoading &&
-      (statusLoggedLocal === "loading" || statusLoggedLocal === "idle") ? (
-        <div>Loading...</div>
+      {statusLoggedLocal === "loading" || statusLoggedLocal === "idle" ? (
+        <Loader />
       ) : (
         <div className="dashboard-container">
           <div className="dashboard-container__wrapper">
@@ -44,13 +48,15 @@ function Dashboard() {
             </div>
             <div className="dashboard-container__wrapper__button-box">
               {isLoggedLocal ? (
-                <Button
-                  onClick={() => navigate("/home")}
-                  text="Placeholder 1"
+                <ButtonOne
+                  onClick={() =>
+                    navigate("/profile", { state: { subpage: "personal" } })
+                  }
+                  text="Personal datails"
                   color="true"
                 />
               ) : (
-                <Button
+                <ButtonOne
                   onClick={() => navigate("/login")}
                   text="Log in"
                   color="true"
@@ -59,19 +65,34 @@ function Dashboard() {
             </div>
             <div className="dashboard-container__wrapper__button-box">
               {isLoggedLocal ? (
-                <Button
-                  onClick={() => navigate("/home")}
-                  text="Placeholder 2"
+                <ButtonOne
+                  onClick={() =>
+                    navigate("/profile", { state: { subpage: "certificate" } })
+                  }
+                  text="Certificate"
                   color="true"
                 />
               ) : (
-                <Button
+                <ButtonOne
                   onClick={() => navigate("/register")}
                   text="Sign up"
                   color="true"
                 />
               )}
             </div>
+            {isLoggedLocal ? (
+              <div className="dashboard-container__wrapper__button-box">
+                <ButtonOne
+                  onClick={() =>
+                    navigate("/profile", { state: { subpage: "payment" } })
+                  }
+                  text="Payment"
+                  color="true"
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       )}

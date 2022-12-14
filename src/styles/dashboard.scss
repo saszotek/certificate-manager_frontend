@@ -75,7 +75,7 @@
                 border-bottom: 3px solid variables.$background-color-primary;
             }
 
-            &:last-of-type {
+            &:nth-of-type(odd) {
                 padding-left: 90px;
             }
         }

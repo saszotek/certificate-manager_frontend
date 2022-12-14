@@ -1,0 +1,57 @@
+@use 'variables';
+
+.button-custom-two {
+    position: relative;
+    padding: 13px 18px;
+    margin: 16px 13px;
+    font-size: 18px;
+    color: variables.$background-color-fifth;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -21px;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: variables.$background-color-fifth;
+        transition: all 0.4s ease;
+    }
+
+    &:hover::after {
+        bottom: 5px;
+        left: 0;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: -19px;
+        left: calc(50% - 1.5px);
+        display: block;
+        width: 3px;
+        height: 0px;
+        background-color: variables.$background-color-fifth;
+        transition: all 0.4s ease;
+    }
+
+    &:hover::before {
+        height: 25px;
+    }
+}
+
+.button-custom-two-active {
+    &::after {
+        bottom: 5px;
+        left: 0;
+    }
+
+    &::before {
+        height: 25px;
+    }
+}

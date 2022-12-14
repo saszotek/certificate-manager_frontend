@@ -1,0 +1,23 @@
+@use 'variables';
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 40vh;
+
+    div {
+        color: variables.$background-color-fourth;
+        font-size: 40px;
+        animation: 2s linear infinite spinner;
+    }
+}
+
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

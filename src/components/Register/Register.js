@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/login.scss";
-import Button from "../Button/Button";
+import ButtonOne from "../Button/ButtonOne";
 import Input from "../Input/Input";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
@@ -72,8 +72,8 @@ function Register() {
             minLength="4"
           />
           <div className="login-container__button-box">
-            <Button type="submit" id="submit" text="Sign up" />
-            <Button
+            <ButtonOne type="submit" id="submit" text="Sign up" />
+            <ButtonOne
               type="button"
               id="login"
               text="Log in"

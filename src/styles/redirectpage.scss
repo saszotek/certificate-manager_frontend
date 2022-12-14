@@ -1,0 +1,11 @@
+@use 'variables';
+
+.redirect-page-container {
+    padding: 100px 0;
+    h2 {
+        margin-bottom: 20px;
+        font-size: 27px;
+        color: variables.$background-color-fifth;
+        letter-spacing: variables.$letter-spacing-primary;
+    }
+}

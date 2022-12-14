@@ -1,12 +1,12 @@
 import React from "react";
-import "../../styles/button.scss";
+import "../../styles/buttonone.scss";
 
-function Button(props) {
+function ButtonOne(props) {
   const { type, id, onClick, text, color } = props;
 
   return (
     <button
-      className={!color ? `button-custom` : `button-custom-blue`}
+      className={!color ? `button-custom-one` : `button-custom-one-blue`}
       type={type}
       id={id}
       onClick={onClick}
@@ -16,4 +16,4 @@ function Button(props) {
   );
 }
 
-export default Button;
+export default ButtonOne;
