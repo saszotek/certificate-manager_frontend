@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/payment.scss";
 import ButtonThree from "../Button/ButtonThree";
+import PaymentAccordion from "./PaymentAccordion";
 
 function Payment({ personDetailsLocal }) {
+  const [selected, setSelected] = useState(null);
+
+  const toggleAccordion = (index) => {
+    if (selected === index) {
+      return setSelected(null);
+    }
+
+    setSelected(index);
+  };
+
   return (
     <div className="payment-container">
-      <div className="payment-container__wrapper">
-        <div className="payment-container__wrapper__box">
-          <div>
-            <p>Account number</p>
-            <p>58273 3123 13213 3123</p>
-          </div>
-          <div>
-            <p>SWIFT</p>
-            <p>INGBIC</p>
-          </div>
-        </div>
-        <div className="payment-container__wrapper__box">
-          <div>
-            <p>NIP</p>
-            <p>434234234434</p>
-          </div>
-        </div>
-      </div>
+      {personDetailsLocal.payments.map((item, index) => (
+        <PaymentAccordion
+          key={index}
+          paymentDetails={item}
+          index={index}
+          selected={selected}
+          toggleAccordion={toggleAccordion}
+        />
+      ))}
       <div className="payment-container__bottom-box">
         <ButtonThree text="Edit payment information" />
       </div>

@@ -65,7 +65,7 @@ function Profile() {
       {personDetailsLocal ? (
         <div className="profile-container">
           <div className="profile-container__box-wrapper">
-            <h1>Maciej Kowalski</h1>
+            <h1>{`${personDetailsLocal.firstName} ${personDetailsLocal.lastName}`}</h1>
             <div className="profile-container__box-wrapper__straight-line"></div>
             <div className="profile-container__box-wrapper__main-button-box">
               <ButtonTwo

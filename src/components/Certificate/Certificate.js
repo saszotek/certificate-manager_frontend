@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/certificate.scss";
 import ButtonThree from "../Button/ButtonThree";
 
 function Certificate({ personDetailsLocal }) {
+  const [validFrom, setValidFrom] = useState("");
+  const [validTo, setValidTo] = useState("");
+
+  useEffect(() => {
+    const dateFrom = new Date(personDetailsLocal.certificate.validFrom);
+    const resultFrom = dateFrom.toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    setValidFrom(resultFrom);
+
+    const dateTo = new Date(personDetailsLocal.certificate.validTo);
+    const resultTo = dateTo.toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    setValidTo(resultTo);
+  }, [
+    personDetailsLocal.certificate.validFrom,
+    personDetailsLocal.certificate.validTo,
+  ]);
+
   return (
     <div className="certificate-container">
       <div className="certificate-container__wrapper">
@@ -17,7 +41,7 @@ function Certificate({ personDetailsLocal }) {
           </div>
           <div>
             <p>Valid from</p>
-            <p>{personDetailsLocal.certificate.validFrom}</p>
+            <p>{validFrom}</p>
           </div>
           <div>
             <p>Serial number</p>
@@ -35,7 +59,7 @@ function Certificate({ personDetailsLocal }) {
           </div>
           <div>
             <p>Valid to</p>
-            <p>{personDetailsLocal.certificate.validTo}</p>
+            <p>{validTo}</p>
           </div>
           <div>
             <p>Certificate status</p>

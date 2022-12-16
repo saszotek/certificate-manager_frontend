@@ -6,44 +6,70 @@
 
     .payment-container__wrapper {
         display: flex;
-        justify-content: space-around;
-        padding: 25px 15px 38px 15px;
+        flex-direction: column;
         border-bottom: 1px solid #88afbd;
 
-        .payment-container__wrapper__box {
-            div {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-    
-                &:nth-child(2n) {
-                    padding: 20px 0;
-                }
-    
-                &:last-child {
-                    padding-bottom: 0;
-                }
-    
+        .payment-container__wrapper__title {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 25px 0;
+            cursor: pointer;
+            
+            .payment-container__wrapper__title__header-info {
+                text-align: left;
+                color: variables.$background-color-fifth;
+
                 p {
-                    width: 100%;
+                    font-size: 14px;
+                    letter-spacing: variables.$letter-spacing-secondary;
+                }
+
+                h2 {
+                    font-size: 25px;
+                    letter-spacing: variables.$letter-spacing-primary;
+                }
+            }
+
+            .payment-container__wrapper__title_plus-minus {
+                font-size: 30px;
+                color: variables.$background-color-fifth;
+            }
+        }
+
+        .payment-container__wrapper__info-collapse {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+
+            div {
+                margin-bottom: 25px;
+
+                p {
                     text-align: left;
                     color: variables.$background-color-fifth;
-    
-                    &:first-child {
-                        font-size: 14px;
-                        letter-spacing: variables.$letter-spacing-secondary;
-                    }
-    
+                    font-size: 14px;
+                    letter-spacing: variables.$letter-spacing-secondary;
+
                     &:last-child {
                         font-size: 25px;
-                        letter-spacing: variables.$letter-spacing-primary;
                     }
                 }
             }
+        }
+
+        .show {
+            height: auto;
+            max-height: 9999px;
+            transition: all 0.5s cubic-bezier(1, 0, 1, 0);
         }
     }
 
     .payment-container__bottom-box {
         padding: 25px 15px;
+        border-top: 2px solid #546a72;
     }
 }
