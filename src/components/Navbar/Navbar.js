@@ -45,17 +45,41 @@ function Navbar() {
           </div>
           <div className="navbar-container__links-box">
             {isLoggedLocal ? (
-              <div className="navbar-container__links-box__list-menu">
-                <NavLink
-                  className={({ isActive }) =>
-                    "navbar-container__navlink" +
-                    (isActive ? " navbar-container__navlink-active" : "")
-                  }
-                  to="/profile"
-                >
-                  My profile
-                </NavLink>
-              </div>
+              <>
+                <div className="navbar-container__links-box__list-menu">
+                  <NavLink
+                    className={({ isActive }) =>
+                      "navbar-container__navlink" +
+                      (isActive ? " navbar-container__navlink-active" : "")
+                    }
+                    to="/home"
+                  >
+                    Administration panel
+                  </NavLink>
+                </div>
+                <div className="navbar-container__links-box__list-menu">
+                  <NavLink
+                    className={({ isActive }) =>
+                      "navbar-container__navlink" +
+                      (isActive ? " navbar-container__navlink-active" : "")
+                    }
+                    to="/home"
+                  >
+                    Import
+                  </NavLink>
+                </div>
+                <div className="navbar-container__links-box__list-menu">
+                  <NavLink
+                    className={({ isActive }) =>
+                      "navbar-container__navlink" +
+                      (isActive ? " navbar-container__navlink-active" : "")
+                    }
+                    to="/home"
+                  >
+                    Export
+                  </NavLink>
+                </div>
+              </>
             ) : (
               <div className="navbar-container__links-box__list-menu">
                 <NavLink

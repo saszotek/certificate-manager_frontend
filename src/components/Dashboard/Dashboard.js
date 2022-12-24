@@ -7,17 +7,14 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   validateJwt,
   isLogged,
-  userDetails,
   statusLogged,
 } from "../../redux/slices/validateTokenSlice";
-import { fetchPersonDetails } from "../../redux/slices/fetchPersonDetailsSlice";
 import Loader from "../Loader/Loader";
 
 function Dashboard() {
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const isLoggedLocal = useSelector(isLogged);
-  const userDetailsLocal = useSelector(userDetails);
   const statusLoggedLocal = useSelector(statusLogged);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,12 +24,6 @@ function Dashboard() {
       dispatch(validateJwt(jwt));
     }
   }, [statusLoggedLocal, dispatch, jwt]);
-
-  useEffect(() => {
-    if (statusLoggedLocal === "succeeded") {
-      dispatch(fetchPersonDetails({ jwt: jwt, userId: userDetailsLocal.id }));
-    }
-  }, [dispatch, jwt, statusLoggedLocal, userDetailsLocal]);
 
   return (
     <>
@@ -51,10 +42,8 @@ function Dashboard() {
             <div className="dashboard-container__wrapper__button-box">
               {isLoggedLocal ? (
                 <ButtonOne
-                  onClick={() =>
-                    navigate("/profile", { state: { subpage: "personal" } })
-                  }
-                  text="Personal datails"
+                  onClick={() => navigate("/home")}
+                  text="Administration Panel"
                   color="true"
                 />
               ) : (
@@ -68,10 +57,8 @@ function Dashboard() {
             <div className="dashboard-container__wrapper__button-box">
               {isLoggedLocal ? (
                 <ButtonOne
-                  onClick={() =>
-                    navigate("/profile", { state: { subpage: "certificate" } })
-                  }
-                  text="Certificate"
+                  onClick={() => navigate("/home")}
+                  text="Import"
                   color="true"
                 />
               ) : (
@@ -85,10 +72,8 @@ function Dashboard() {
             {isLoggedLocal ? (
               <div className="dashboard-container__wrapper__button-box">
                 <ButtonOne
-                  onClick={() =>
-                    navigate("/profile", { state: { subpage: "payment" } })
-                  }
-                  text="Payment"
+                  onClick={() => navigate("/home")}
+                  text="Export"
                   color="true"
                 />
               </div>

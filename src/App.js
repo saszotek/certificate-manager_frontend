@@ -7,10 +7,8 @@ import {
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
 import Register from "./components/Register/Register";
 import LoggedRoute from "./PrivateRoute/LoggedRoute";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -38,7 +36,7 @@ function App() {
               </LoggedRoute>
             }
           />
-          <Route
+          {/* <Route
             exact
             path="/profile"
             element={
@@ -46,7 +44,7 @@ function App() {
                 <Profile />
               </PrivateRoute>
             }
-          />
+          /> */}
         </Routes>
       </Router>
     </>

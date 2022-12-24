@@ -5,7 +5,6 @@
     flex-direction: column;
     margin: 15px 0;
     width: 100%;
-    height: 100%;
 
     label {
         padding-left: 5px;
@@ -20,5 +19,17 @@
         border: none;
         border-radius: 10px;
         outline: none;
+    }
+}
+
+.alternative-color {
+    label {
+        color: variables.$background-color-fifth;
+    }
+
+    input {
+        color: variables.$background-color-fifth;
+        background: variables.$background-color-sixth;
+        border: 1px solid variables.$background-color-fourth;
     }
 }

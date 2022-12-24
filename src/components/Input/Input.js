@@ -2,10 +2,14 @@ import React from "react";
 import "../../styles/input.scss";
 
 function Input(props) {
-  const { type, id, value, onChange, label, minLength } = props;
+  const { type, id, value, onChange, label, minLength, altColor } = props;
 
   return (
-    <div className="input-container">
+    <div
+      className={
+        !altColor ? "input-container" : "input-container alternative-color"
+      }
+    >
       <label>{label}</label>
       <input
         type={type}

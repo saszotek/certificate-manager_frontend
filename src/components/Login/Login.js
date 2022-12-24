@@ -12,7 +12,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
-  /* eslint-disable */
+  // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
 
   const handleSubmit = (event) => {
