@@ -42,8 +42,8 @@ function Dashboard() {
             <div className="dashboard-container__wrapper__button-box">
               {isLoggedLocal ? (
                 <ButtonOne
-                  onClick={() => navigate("/home")}
-                  text="Administration Panel"
+                  onClick={() => navigate("/panel")}
+                  text="Control Panel"
                   color="true"
                 />
               ) : (

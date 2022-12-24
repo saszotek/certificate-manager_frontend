@@ -1,0 +1,89 @@
+@use 'variables';
+
+.control-panel-accordion-container {
+    .control-panel-accordion-container__header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        border-top: 2px solid variables.$background-color-secondary;
+        cursor: pointer;
+
+        .control-panel-accordion-container__header__info {
+            width: 190px;
+            padding: 0 10px;
+            color: variables.$background-color-fifth;
+            text-align: center;
+
+            &:last-child {
+                width: 50px;
+            }
+
+            p {
+                &:first-child {
+                    font-size: 11px;
+                    letter-spacing: variables.$letter-spacing-secondary;
+                }
+    
+                &:last-child {
+                    font-size: 18px;
+                    letter-spacing: variables.$letter-spacing-primary;
+                }
+            }
+
+            span {
+                display: block;
+                font-size: 27px;
+            }
+        }
+    }
+
+    .control-panel-accordion-container__collapse-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+
+        .control-panel-accordion-container__collapse-menu__item {
+            display: flex;
+            justify-content: space-around;
+            width: 95%;
+            padding: 15px 40px;
+            border-top: 1px solid variables.$background-color-secondary;
+
+            .control-panel-accordion-container__collapse-menu__item__info {
+                width: 190px;
+                color: variables.$background-color-fifth;
+                text-align: center;
+
+                p {
+                    &:first-child {
+                        font-size: 11px;
+                        letter-spacing: variables.$letter-spacing-secondary;
+                    }
+        
+                    &:last-child {
+                        font-size: 18px;
+                        letter-spacing: variables.$letter-spacing-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .show {
+        height: auto;
+        max-height: 9999px;
+        transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+    }
+}
+
+
+.no-border {
+    .control-panel-accordion-container__header {
+        border: none;
+    }
+}

@@ -52,9 +52,9 @@ function Navbar() {
                       "navbar-container__navlink" +
                       (isActive ? " navbar-container__navlink-active" : "")
                     }
-                    to="/home"
+                    to="/panel"
                   >
-                    Administration panel
+                    Control Panel
                   </NavLink>
                 </div>
                 <div className="navbar-container__links-box__list-menu">

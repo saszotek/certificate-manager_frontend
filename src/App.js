@@ -4,11 +4,13 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import ControlPanel from "./components/ControlPanel/ControlPanel";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Register from "./components/Register/Register";
 import LoggedRoute from "./PrivateRoute/LoggedRoute";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -36,15 +38,15 @@ function App() {
               </LoggedRoute>
             }
           />
-          {/* <Route
+          <Route
             exact
-            path="/profile"
+            path="/panel"
             element={
               <PrivateRoute>
-                <Profile />
+                <ControlPanel />
               </PrivateRoute>
             }
-          /> */}
+          />
         </Routes>
       </Router>
     </>

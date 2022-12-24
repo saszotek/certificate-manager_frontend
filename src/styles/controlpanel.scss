@@ -1,0 +1,20 @@
+@use 'variables';
+
+.control-panel-container {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    margin: 160px auto 0 auto;
+
+    .control-panel-container__wrapper {
+        background-color: #fff;
+        border: 3px solid variables.$background-color-fifth;
+        border-radius: 15px;
+
+        .control-panel-container__wrapper__border {
+            height: 2px;
+            width: 100%;
+            background-color: variables.$background-color-secondary;
+        }
+    }
+}
