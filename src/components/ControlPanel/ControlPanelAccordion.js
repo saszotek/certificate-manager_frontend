@@ -1,7 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../../styles/controlpanelaccordion.scss";
-import ButtonThree from "../Button/ButtonThree";
+import ControlPanelInvoiceAccordion from "./ControlPanelInvoiceAccordion";
 
 function ControlPanelAccordion({
   customerData,
@@ -9,18 +8,6 @@ function ControlPanelAccordion({
   selected,
   toggleAccordion,
 }) {
-  const navigate = useNavigate();
-
-  const changeDateFormat = (date) => {
-    const oldDate = new Date(date);
-    const newDate = oldDate.toLocaleDateString("en-GB", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    return newDate;
-  };
-
   return (
     <div
       className={
@@ -66,29 +53,11 @@ function ControlPanelAccordion({
         }
       >
         {customerData.invoices.map((item, index) => (
-          <div
-            className="control-panel-accordion-container__collapse-menu__item"
+          <ControlPanelInvoiceAccordion
             key={index}
-          >
-            <div className="control-panel-accordion-container__collapse-menu__item__info">
-              <p>Invoice number</p>
-              <p>{item.invoiceNumber}</p>
-            </div>
-            <div className="control-panel-accordion-container__collapse-menu__item__info">
-              <p>Date of agreement</p>
-              <p>{changeDateFormat(item.dateOfAgreement)}</p>
-            </div>
-            <div className="control-panel-accordion-container__collapse-menu__item__info">
-              <p>Status</p>
-              <p>{item.status}</p>
-            </div>
-            <div className="control-panel-accordion-container__collapse-menu__item__info">
-              <ButtonThree
-                text="Certificates"
-                onClick={() => navigate("/home")}
-              />
-            </div>
-          </div>
+            invoiceData={item}
+            index={index}
+          />
         ))}
       </div>
     </div>
