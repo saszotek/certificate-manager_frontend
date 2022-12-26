@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/controlpanelaccordion.scss";
 import ButtonThree from "../Button/ButtonThree";
 
-function ControlPanelInvoiceAccordion({ invoiceData, index }) {
+function ControlPanelInvoiceAccordion({ invoiceData, index, customerName }) {
   const navigate = useNavigate();
 
   const changeDateFormat = (date) => {
@@ -18,23 +18,49 @@ function ControlPanelInvoiceAccordion({ invoiceData, index }) {
 
   return (
     <div
-      className="control-panel-accordion-invoice-container__collapse-menu__item"
+      className="control-panel-accordion-container__collapse-menu__item"
       key={index}
     >
-      <div className="control-panel-accordion-container__collapse-menu__item__info">
-        <p>Invoice number</p>
-        <p>{invoiceData.invoiceNumber}</p>
+      <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box">
+        <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
+          <p>Invoice number</p>
+          <p>{invoiceData.invoiceNumber}</p>
+        </div>
+        <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
+          <p>Date of agreement</p>
+          <p>{changeDateFormat(invoiceData.dateOfAgreement)}</p>
+        </div>
+        <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
+          <p>Status</p>
+          <p>{invoiceData.status}</p>
+        </div>
+        <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
+          <ButtonThree
+            text="Przypomnij za 3 dni"
+            onClick={() => navigate("/home")}
+          />
+        </div>
       </div>
-      <div className="control-panel-accordion-container__collapse-menu__item__info">
-        <p>Date of agreement</p>
-        <p>{changeDateFormat(invoiceData.dateOfAgreement)}</p>
-      </div>
-      <div className="control-panel-accordion-container__collapse-menu__item__info">
-        <p>Status</p>
-        <p>{invoiceData.status}</p>
-      </div>
-      <div className="control-panel-accordion-container__collapse-menu__item__info">
-        <ButtonThree text="Certificates" onClick={() => navigate("/home")} />
+      <div className="control-panel-accordion-container__collapse-menu__item__button-box">
+        <div>
+          <ButtonThree
+            text="Certificates"
+            onClick={() =>
+              navigate("/certificates", {
+                state: {
+                  invoiceData: invoiceData,
+                  customerName: customerName,
+                },
+              })
+            }
+          />
+        </div>
+        <div>
+          <ButtonThree
+            text="Export to .icl"
+            onClick={() => navigate("/home")}
+          />
+        </div>
       </div>
     </div>
   );

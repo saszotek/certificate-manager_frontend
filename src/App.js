@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import Certificate from "./components/Certificate/Certificate";
 import ControlPanel from "./components/ControlPanel/ControlPanel";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
@@ -44,6 +45,15 @@ function App() {
             element={
               <PrivateRoute>
                 <ControlPanel />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/certificates"
+            element={
+              <PrivateRoute>
+                <Certificate />
               </PrivateRoute>
             }
           />

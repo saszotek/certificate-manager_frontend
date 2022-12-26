@@ -43,6 +43,7 @@ function ControlPanel() {
         <Loader />
       ) : (
         <div className="control-panel-container">
+          <h1>Control Panel</h1>
           <div className="control-panel-container__wrapper">
             {customerData.map((item, index) => (
               <ControlPanelAccordion

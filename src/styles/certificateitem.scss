@@ -1,0 +1,37 @@
+@use 'variables';
+
+.certificate-item-container {
+    .certificate-item-container__header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        border-top: 2px solid variables.$background-color-secondary;
+
+        .certificate-item-container__header__info {
+            // width: 190px;
+            padding: 0 10px;
+            color: variables.$background-color-fifth;
+            text-align: center;
+
+            p {
+                &:first-child {
+                    font-size: 11px;
+                    letter-spacing: variables.$letter-spacing-secondary;
+                }
+    
+                &:last-child {
+                    font-size: 18px;
+                    letter-spacing: variables.$letter-spacing-primary;
+                }
+            }
+        }
+    }
+}
+
+.no-border {
+    .certificate-item-container__header {
+        border: none;
+    }
+}

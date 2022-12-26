@@ -57,6 +57,7 @@ function ControlPanelAccordion({
             key={index}
             invoiceData={item}
             index={index}
+            customerName={`${customerData.firstName} ${customerData.lastName}`}
           />
         ))}
       </div>

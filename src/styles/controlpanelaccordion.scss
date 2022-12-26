@@ -49,25 +49,51 @@
 
         .control-panel-accordion-container__collapse-menu__item {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             width: 95%;
             padding: 15px 40px;
             border-top: 1px solid variables.$background-color-secondary;
 
-            .control-panel-accordion-container__collapse-menu__item__info {
-                width: 190px;
-                color: variables.$background-color-fifth;
-                text-align: center;
+            .control-panel-accordion-container__collapse-menu__item__wrapper-box {
+                display: flex;
+                justify-content: space-around;
+                padding-bottom: 15px;
 
-                p {
-                    &:first-child {
-                        font-size: 11px;
-                        letter-spacing: variables.$letter-spacing-secondary;
+                .control-panel-accordion-container__collapse-menu__item__wrapper-box__info {
+                    width: 190px;
+                    color: variables.$background-color-fifth;
+                    text-align: center;
+    
+                    p {
+                        &:first-child {
+                            font-size: 11px;
+                            letter-spacing: variables.$letter-spacing-secondary;
+                        }
+            
+                        &:last-child {
+                            font-size: 18px;
+                            letter-spacing: variables.$letter-spacing-primary;
+                        }
                     }
-        
+                }
+            }
+
+            .control-panel-accordion-container__collapse-menu__item__button-box {
+                display: flex;
+                justify-content: center;
+                width: 80%;
+                padding-top: 7px;
+                border-top: 1px solid variables.$background-color-secondary;
+
+                div {
+                    &:first-child {
+                        margin-right: 30px;
+                    }
+
                     &:last-child {
-                        font-size: 18px;
-                        letter-spacing: variables.$letter-spacing-primary;
+                        margin-left: 30px;
                     }
                 }
             }

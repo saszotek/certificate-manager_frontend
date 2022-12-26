@@ -1,6 +1,6 @@
 @use 'variables';
 
-.control-panel-container {
+.certificate-container {
     display: flex;
     flex-direction: column;
     width: 1200px;
@@ -14,12 +14,12 @@
         letter-spacing: variables.$letter-spacing-secondary;
     }
 
-    .control-panel-container__wrapper {
+    .certificate-container__wrapper {
         background-color: #fff;
         border: 3px solid variables.$background-color-fifth;
         border-radius: 15px;
 
-        .control-panel-container__wrapper__border {
+        .certificate-container__wrapper__border {
             height: 2px;
             width: 100%;
             background-color: variables.$background-color-secondary;
