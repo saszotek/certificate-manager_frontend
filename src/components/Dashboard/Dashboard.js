@@ -57,7 +57,7 @@ function Dashboard() {
             <div className="dashboard-container__wrapper__button-box">
               {isLoggedLocal ? (
                 <ButtonOne
-                  onClick={() => navigate("/home")}
+                  onClick={() => navigate("/import")}
                   text="Import"
                   color="true"
                 />

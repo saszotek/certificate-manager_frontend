@@ -63,7 +63,7 @@ function Navbar() {
                       "navbar-container__navlink" +
                       (isActive ? " navbar-container__navlink-active" : "")
                     }
-                    to="/home"
+                    to="/import"
                   >
                     Import
                   </NavLink>
