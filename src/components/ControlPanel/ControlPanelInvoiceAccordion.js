@@ -31,18 +31,6 @@ function ControlPanelInvoiceAccordion({ invoiceData, index, customerName }) {
           <p>{changeDateFormat(invoiceData.dateOfAgreement)}</p>
         </div>
         <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
-          <p>Status</p>
-          <p>{invoiceData.status}</p>
-        </div>
-        <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
-          <ButtonThree
-            text="Przypomnij za 3 dni"
-            onClick={() => navigate("/home")}
-          />
-        </div>
-      </div>
-      <div className="control-panel-accordion-container__collapse-menu__item__button-box">
-        <div>
           <ButtonThree
             text="Certificates"
             onClick={() =>
@@ -55,13 +43,14 @@ function ControlPanelInvoiceAccordion({ invoiceData, index, customerName }) {
             }
           />
         </div>
-        <div>
+        <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
           <ButtonThree
-            text="Export to .icl"
+            text="Export to .ics"
             onClick={() => navigate("/home")}
           />
         </div>
       </div>
+      <div className="control-panel-accordion-container__collapse-menu__item__button-box"></div>
     </div>
   );
 }

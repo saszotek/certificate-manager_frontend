@@ -1,7 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/certificateitem.scss";
+import ButtonThree from "../Button/ButtonThree";
 
-function CertificateItem({ certificateData, invoiceStatus, index }) {
+function CertificateItem({ certificateData, index }) {
+  const navigate = useNavigate();
+
   const changeDateFormat = (date) => {
     const oldDate = new Date(date);
     const newDate = oldDate.toLocaleDateString("en-GB", {
@@ -44,7 +48,13 @@ function CertificateItem({ certificateData, invoiceStatus, index }) {
         </div>
         <div className="certificate-item-container__header__info">
           <p>Status</p>
-          <p>{invoiceStatus}</p>
+          <p>{certificateData.status}</p>
+        </div>
+        <div className="certificate-item-container__header__info">
+          <ButtonThree
+            text="Przypomnij za 3 dni"
+            onClick={() => navigate("/home")}
+          />
         </div>
       </div>
     </div>

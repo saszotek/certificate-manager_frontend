@@ -11,12 +11,7 @@ function Certificate() {
       <h1>{`${location.state.customerName}'s certificates`}</h1>
       <div className="certificate-container__wrapper">
         {location.state.invoiceData.certificates.map((item, index) => (
-          <CertificateItem
-            key={index}
-            certificateData={item}
-            invoiceStatus={location.state.invoiceData.status}
-            index={index}
-          />
+          <CertificateItem key={index} certificateData={item} index={index} />
         ))}
       </div>
     </div>
