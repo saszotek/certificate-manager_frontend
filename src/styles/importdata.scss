@@ -68,6 +68,21 @@
         opacity: 0.6;
     }
 
+    .import-data-container__message {
+        width: 70%;
+        margin: 10px auto;
+        background-color: #00aa00;
+        border-radius: 10px;
+
+        p {
+            padding: 7px 10px;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            white-space: pre-line;
+        }
+    }
+
     .import-data-container__file-preview {
         display: flex;
         flex-direction: column;

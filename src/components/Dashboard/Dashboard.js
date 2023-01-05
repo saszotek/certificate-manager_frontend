@@ -72,7 +72,7 @@ function Dashboard() {
             {isLoggedLocal ? (
               <div className="dashboard-container__wrapper__button-box">
                 <ButtonOne
-                  onClick={() => navigate("/home")}
+                  onClick={() => navigate("/export")}
                   text="Export"
                   color="true"
                 />

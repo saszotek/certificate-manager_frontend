@@ -7,6 +7,7 @@ import {
 import Certificate from "./components/Certificate/Certificate";
 import ControlPanel from "./components/ControlPanel/ControlPanel";
 import Dashboard from "./components/Dashboard/Dashboard";
+import ExportData from "./components/ExportData/ExportData";
 import ImportData from "./components/ImportData/ImportData";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
@@ -64,6 +65,15 @@ function App() {
             element={
               <PrivateRoute>
                 <ImportData />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/export"
+            element={
+              <PrivateRoute>
+                <ExportData />
               </PrivateRoute>
             }
           />

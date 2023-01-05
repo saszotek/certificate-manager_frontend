@@ -1,0 +1,26 @@
+@use 'variables';
+
+.export-data-container {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    margin: 160px auto 0 auto;
+
+    h1 {
+        padding-bottom: 15px;
+        text-align: center;
+        font-size: 30px;
+        color: variables.$background-color-fifth;
+        letter-spacing: variables.$letter-spacing-secondary;
+    }
+
+    .export-data-container__error-box {
+        margin-top: 50px;
+    }
+
+    .export-data-container__button-box {
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+    }
+}
