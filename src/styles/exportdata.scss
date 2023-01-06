@@ -22,5 +22,9 @@
         display: flex;
         justify-content: center;
         padding-top: 50px;
+
+        .export-data-container__button-box__item {
+            margin: 0 40px;
+        }
     }
 }
