@@ -32,16 +32,11 @@ function ImportData() {
     setIsSuccess(false);
   };
 
-  const onFileChange = (files) => {
-    console.log(files);
-  };
-
   const onFileDrop = (e) => {
     const newFile = e.target.files[0];
     if (newFile) {
       const updatedList = [...fileList, newFile];
       setFileList(updatedList);
-      onFileChange(updatedList);
     }
     setIsSuccess(false);
   };
@@ -50,7 +45,6 @@ function ImportData() {
     const updatedList = [...fileList];
     updatedList.splice(fileList.indexOf(file), 1);
     setFileList(updatedList);
-    onFileChange(updatedList);
     if (updatedList.length === 0) {
       setIsError(false);
     }

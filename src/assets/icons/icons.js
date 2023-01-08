@@ -2,6 +2,10 @@ import {
   faBars,
   faCertificate,
   faCloudArrowUp,
+  faAngleLeft,
+  faAngleRight,
+  faAnglesLeft,
+  faAnglesRight,
 } from "@fortawesome/free-solid-svg-icons";
 import fileDefault from "./file-default.png";
 import fileCsv from "./file-csv.png";
@@ -12,6 +16,10 @@ const icons = {
   faBars: faBars,
   faCertificate: faCertificate,
   faCloudArrowUp: faCloudArrowUp,
+  faAngleLeft: faAngleLeft,
+  faAngleRight: faAngleRight,
+  faAnglesLeft: faAnglesLeft,
+  faAnglesRight: faAnglesRight,
   fileDefault: fileDefault,
   csv: fileCsv,
   eml: fileEml,

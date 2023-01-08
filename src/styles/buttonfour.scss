@@ -1,0 +1,20 @@
+@use 'variables';
+
+.button-custom-four {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 10px;
+    font-size: 16px;
+    color: variables.$background-color-fifth;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+
+    &:hover {
+        background-color: #dfdfdf;
+        border: 1px solid #c2c2c2;
+    }
+}
