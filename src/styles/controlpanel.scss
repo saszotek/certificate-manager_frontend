@@ -32,11 +32,10 @@
                 border-bottom: none;
                 border-radius: 10px 10px 0 0;
                 outline: none;
-            }
 
-            button {
-                margin-left: 5px;
-                padding: 5px 10px;
+                &::placeholder {
+                    color: variables.$background-color-fifth;
+                }
             }
         }
     }

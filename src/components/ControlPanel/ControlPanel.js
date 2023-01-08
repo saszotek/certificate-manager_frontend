@@ -20,25 +20,33 @@ function ControlPanel() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`/api/customer/find/all?page=${currentPage}&lastName=${lastName}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setTotalPages(response.data.totalPages);
-        setCustomerData(response.data.customers);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    async function getCustomers() {
+      await axios
+        .get(
+          `/api/customer/find/all?page=${currentPage}&lastName=${lastName}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          setTotalPages(response.data.totalPages);
+          setCustomerData(response.data.customers);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+
+    getCustomers();
   }, [currentPage, lastName, jwt]);
 
   const previousPage = () => {
+    console.log("WORKS BEFORE");
     if (!(currentPage === 0)) {
       setCurrentPage((prev) => prev - 1);
       setSelected(null);
@@ -46,6 +54,7 @@ function ControlPanel() {
   };
 
   const nextPage = () => {
+    console.log("WORKS NEXT");
     if (!(currentPage === totalPages - 1)) {
       setCurrentPage((prev) => prev + 1);
       setSelected(null);
@@ -99,33 +108,20 @@ function ControlPanel() {
           </div>
           <div className="control-panel-container__pagination-box">
             <ButtonFour
-              text={
-                <FontAwesomeIcon
-                  icon={icons.faAnglesLeft}
-                  onClick={firstPage}
-                />
-              }
+              onClick={firstPage}
+              text={<FontAwesomeIcon icon={icons.faAnglesLeft} />}
             />
             <ButtonFour
-              text={
-                <FontAwesomeIcon
-                  icon={icons.faAngleLeft}
-                  onClick={previousPage}
-                />
-              }
+              onClick={previousPage}
+              text={<FontAwesomeIcon icon={icons.faAngleLeft} />}
             />
             <ButtonFour
-              text={
-                <FontAwesomeIcon icon={icons.faAngleRight} onClick={nextPage} />
-              }
+              onClick={nextPage}
+              text={<FontAwesomeIcon icon={icons.faAngleRight} />}
             />
             <ButtonFour
-              text={
-                <FontAwesomeIcon
-                  icon={icons.faAnglesRight}
-                  onClick={lastPage}
-                />
-              }
+              onClick={lastPage}
+              text={<FontAwesomeIcon icon={icons.faAnglesRight} />}
             />
           </div>
         </div>
