@@ -14,7 +14,6 @@ function ControlPanel() {
   const [customerData, setCustomerData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(null);
-  // eslint-disable-next-line
   const [lastName, setLastName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [selected, setSelected] = useState(null);
