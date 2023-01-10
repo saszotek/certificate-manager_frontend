@@ -14,22 +14,19 @@ function ControlPanel() {
   const [customerData, setCustomerData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(null);
-  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     async function getCustomers() {
       await axios
-        .get(
-          `/api/customer/find/all?page=${currentPage}&lastName=${lastName}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        )
+        .get(`/api/customer/find/all?page=${currentPage}&email=${email}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+        })
         .then((response) => {
           console.log(response.data);
           setTotalPages(response.data.totalPages);
@@ -42,10 +39,9 @@ function ControlPanel() {
     }
 
     getCustomers();
-  }, [currentPage, lastName, jwt]);
+  }, [currentPage, email, jwt]);
 
   const previousPage = () => {
-    console.log("WORKS BEFORE");
     if (!(currentPage === 0)) {
       setCurrentPage((prev) => prev - 1);
       setSelected(null);
@@ -53,7 +49,6 @@ function ControlPanel() {
   };
 
   const nextPage = () => {
-    console.log("WORKS NEXT");
     if (!(currentPage === totalPages - 1)) {
       setCurrentPage((prev) => prev + 1);
       setSelected(null);
@@ -88,9 +83,9 @@ function ControlPanel() {
             <div>
               <input
                 type="text"
-                placeholder="search by last name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                placeholder="search by email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>

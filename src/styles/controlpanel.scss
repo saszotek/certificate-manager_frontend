@@ -35,6 +35,7 @@
 
                 &::placeholder {
                     color: variables.$background-color-fifth;
+                    letter-spacing: variables.$letter-spacing-primary;
                 }
             }
         }
