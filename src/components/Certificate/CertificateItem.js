@@ -1,19 +1,38 @@
+import axios from "axios";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../../styles/certificateitem.scss";
+import { useLocalState } from "../../util/useLocalState";
 import ButtonThree from "../Button/ButtonThree";
+import SelectBox from "./SelectBox";
+import setDateTime from "../../util/setDateTime";
 
 function CertificateItem({ certificateData, index }) {
-  const navigate = useNavigate();
+  // eslint-disable-next-line
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
-  const changeDateFormat = (date) => {
-    const oldDate = new Date(date);
-    const newDate = oldDate.toLocaleDateString("en-GB", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    return newDate;
+  const statuses = [
+    { value: "Invoice sent", id: 1 },
+    { value: "Completed", id: 2 },
+    { value: "Paid", id: 3 },
+    { value: "Other company", id: 4 },
+    { value: "Resigned", id: 5 },
+    { value: "Expired", id: 6 },
+  ];
+
+  const scheduleEmail = () => {
+    axios
+      .post(`/api/schedule/email/certificate/${certificateData.id}`, null, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -28,33 +47,44 @@ function CertificateItem({ certificateData, index }) {
       <div className="certificate-item-container__header">
         <div className="certificate-item-container__header__info">
           <p>Serial number</p>
-          <p>{certificateData.serialNumber}</p>
+          <p className="ellipsis">
+            <span>{certificateData.serialNumber}</span>
+          </p>
         </div>
         <div className="certificate-item-container__header__info">
           <p>Valid from</p>
-          <p>{changeDateFormat(certificateData.validFrom)}</p>
+          <p>
+            <span>{setDateTime(certificateData.validFrom)}</span>
+          </p>
         </div>
         <div className="certificate-item-container__header__info">
           <p>Valid to</p>
-          <p>{changeDateFormat(certificateData.validTo)}</p>
+          <p>
+            <span>{setDateTime(certificateData.validTo)}</span>
+          </p>
         </div>
         <div className="certificate-item-container__header__info">
           <p>Card number</p>
-          <p>{certificateData.cardNumber}</p>
+          <p className="ellipsis">
+            <span>{certificateData.cardNumber}</span>
+          </p>
         </div>
         <div className="certificate-item-container__header__info">
           <p>Card type</p>
-          <p>{certificateData.cardType}</p>
+          <p>
+            <span>{certificateData.cardType}</span>
+          </p>
         </div>
         <div className="certificate-item-container__header__info">
-          <p>Status</p>
-          <p>{certificateData.status}</p>
-        </div>
-        <div className="certificate-item-container__header__info">
-          <ButtonThree
-            text="Przypomnij za 3 dni"
-            onClick={() => navigate("/home")}
+          <p>Change status</p>
+          <SelectBox
+            items={statuses}
+            defaultOption={certificateData.status}
+            certificateId={certificateData.id}
           />
+        </div>
+        <div className="certificate-item-container__header__info">
+          <ButtonThree text="Przypomnij za 3 dni" onClick={scheduleEmail} />
         </div>
       </div>
     </div>

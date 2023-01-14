@@ -6,21 +6,12 @@ import ButtonThree from "../Button/ButtonThree";
 import fileDownload from "js-file-download";
 import { useLocalState } from "../../util/useLocalState";
 import createReminders from "../../util/createReminders";
+import setDateTime from "../../util/setDateTime";
 
 function ControlPanelInvoiceAccordion({ invoiceData, index, customerName }) {
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const navigate = useNavigate();
-
-  const changeDateFormat = (date) => {
-    const oldDate = new Date(date);
-    const newDate = oldDate.toLocaleDateString("en-GB", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    return newDate;
-  };
 
   const exportReminders = async () => {
     await axios
@@ -49,11 +40,15 @@ function ControlPanelInvoiceAccordion({ invoiceData, index, customerName }) {
       <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box">
         <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
           <p>Invoice number</p>
-          <p>{invoiceData.invoiceNumber}</p>
+          <p>
+            <span>{invoiceData.invoiceNumber}</span>
+          </p>
         </div>
         <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
           <p>Date of agreement</p>
-          <p>{changeDateFormat(invoiceData.dateOfAgreement)}</p>
+          <p>
+            <span>{setDateTime(invoiceData.dateOfAgreement)}</span>
+          </p>
         </div>
         <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
           <ButtonThree

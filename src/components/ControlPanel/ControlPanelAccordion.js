@@ -23,26 +23,38 @@ function ControlPanelAccordion({
       >
         <div className="control-panel-accordion-container__header__info">
           <p>First name</p>
-          <p>{customerData.firstName}</p>
+          <p>
+            <span>{customerData.firstName}</span>
+          </p>
         </div>
         <div className="control-panel-accordion-container__header__info">
           <p>Last name</p>
-          <p>{customerData.lastName}</p>
+          <p>
+            <span>{customerData.lastName}</span>
+          </p>
         </div>
         <div className="control-panel-accordion-container__header__info">
           <p>Phone number</p>
-          <p>{customerData.phoneNumber}</p>
+          <p>
+            <span>{customerData.phoneNumber}</span>
+          </p>
         </div>
         <div className="control-panel-accordion-container__header__info">
           <p>E-mail</p>
-          <p>{customerData.email}</p>
+          <p>
+            <span>{customerData.email}</span>
+          </p>
         </div>
         <div className="control-panel-accordion-container__header__info">
           <p>City</p>
-          <p>{customerData.city}</p>
+          <p>
+            <span>{customerData.city}</span>
+          </p>
         </div>
         <div className="control-panel-accordion-container__header__info">
-          <span>{selected === index ? "-" : "+"}</span>
+          <span className="span-plus-minus">
+            {selected === index ? "-" : "+"}
+          </span>
         </div>
       </div>
       <div

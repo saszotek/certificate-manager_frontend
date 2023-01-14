@@ -11,10 +11,23 @@
         cursor: pointer;
 
         .control-panel-accordion-container__header__info {
-            width: 190px;
             padding: 0 10px;
             color: variables.$background-color-fifth;
             text-align: center;
+
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(5) {
+                width: 170px;
+            }
+
+            &:nth-child(3) {
+                width: 120px;
+            }
+
+            &:nth-child(4) {
+                width: 350px;
+            }
 
             &:last-child {
                 width: 50px;
@@ -27,12 +40,16 @@
                 }
     
                 &:last-child {
-                    font-size: 18px;
+                    font-size: 16px;
                     letter-spacing: variables.$letter-spacing-primary;
                 }
             }
 
             span {
+                padding: 0 5px;
+            }
+
+            .span-plus-minus {
                 display: block;
                 font-size: 27px;
             }
@@ -62,9 +79,9 @@
                 padding-bottom: 15px;
 
                 .control-panel-accordion-container__collapse-menu__item__wrapper-box__info {
-                    width: 190px;
                     color: variables.$background-color-fifth;
                     text-align: center;
+                    margin: 0 25px;
     
                     p {
                         &:first-child {
@@ -73,8 +90,12 @@
                         }
             
                         &:last-child {
-                            font-size: 18px;
+                            font-size: 16px;
                             letter-spacing: variables.$letter-spacing-primary;
+                        }
+
+                        span {
+                            padding: 0 5px;
                         }
                     }
                 }

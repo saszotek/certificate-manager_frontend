@@ -1,0 +1,66 @@
+@use 'variables';
+
+.select-box {
+    width: 100%;
+
+    .select-box__container {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 2px solid variables.$background-color-fifth;
+        border-radius: 10px;
+        cursor: pointer;
+
+        .select-box__container__box {
+            position: relative;
+
+            .select-box__container__box__selected-item {
+                font-size: 18px;
+            }
+    
+            .select-box__container__box__arrow {
+                position: absolute;
+                top: 0;
+                right: 5px;
+                display: flex;
+                align-items: center;
+                height: 100%;
+                font-size: 13px;
+            }
+        }
+
+        .select-box__container__items {
+            box-sizing: content-box;
+            position: absolute;
+            top: 27px;
+            left: -2px;
+            display: none;
+            width: 100%;
+            background-color: #fff;
+            border: 2px solid variables.$background-color-fifth;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            z-index: 999;
+
+            div {
+                padding: 5px 0;
+                font-size: 16px;
+                border-top: 1px solid #eee;
+
+                &:first-child {
+                    border: none;
+                }
+            }
+        }
+
+        .show-items-items {
+            display: block;
+        }
+    }
+
+    .show-items-container {
+        border-radius: 10px 10px 0 0;
+    }
+}

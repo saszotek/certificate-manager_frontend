@@ -10,10 +10,27 @@
         border-top: 2px solid variables.$background-color-secondary;
 
         .certificate-item-container__header__info {
-            // width: 190px;
             padding: 0 10px;
             color: variables.$background-color-fifth;
             text-align: center;
+
+            &:nth-child(1),
+            &:nth-child(4) {
+                width: 130px;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3) {
+                width: 250px;
+            }
+
+            &:nth-child(5) {
+                width: 150px;
+            }
+
+            &:nth-child(6) {
+                width: 190px;
+            }
 
             p {
                 &:first-child {
@@ -22,8 +39,35 @@
                 }
     
                 &:last-child {
-                    font-size: 18px;
+                    font-size: 16px;
                     letter-spacing: variables.$letter-spacing-primary;
+                }
+
+                span {
+                    padding: 0 5px;
+                }
+            }
+
+            .ellipsis {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &:hover {
+                    position: relative;
+                    overflow: visible;
+                    z-index: 999;
+                }
+
+                span {
+                    transition: 0.1s all ease-out;
+
+                    &:hover {
+                        display: inline-block;
+                        height: 100%;
+                        background-color: #d6d6d6;
+                        cursor: pointer;
+                    }
                 }
             }
         }
