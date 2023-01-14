@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/certificateitem.scss";
 import { useLocalState } from "../../util/useLocalState";
 import ButtonThree from "../Button/ButtonThree";
@@ -9,6 +9,16 @@ import setDateTime from "../../util/setDateTime";
 function CertificateItem({ certificateData, index }) {
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
+  const [isExpired, setIsExpired] = useState(false);
+
+  useEffect(() => {
+    if (
+      certificateData.status === "Expired" ||
+      certificateData.status === "Resigned"
+    ) {
+      setIsExpired(true);
+    }
+  }, [isExpired, certificateData.status]);
 
   const statuses = [
     { value: "Invoice sent", id: 1 },
@@ -44,7 +54,13 @@ function CertificateItem({ certificateData, index }) {
       }
       key={index}
     >
-      <div className="certificate-item-container__header">
+      <div
+        className={
+          isExpired
+            ? "certificate-item-container__header certificate-expired"
+            : "certificate-item-container__header"
+        }
+      >
         <div className="certificate-item-container__header__info">
           <p>Serial number</p>
           <p className="ellipsis">
@@ -76,15 +92,32 @@ function CertificateItem({ certificateData, index }) {
           </p>
         </div>
         <div className="certificate-item-container__header__info">
-          <p>Change status</p>
-          <SelectBox
-            items={statuses}
-            defaultOption={certificateData.status}
-            certificateId={certificateData.id}
-          />
+          {isExpired ? (
+            <>
+              <p>Status</p>
+              <SelectBox
+                items={statuses}
+                defaultOption={certificateData.status}
+                certificateId={certificateData.id}
+                disabled={true}
+              />
+            </>
+          ) : (
+            <>
+              <p>Change status</p>
+              <SelectBox
+                items={statuses}
+                defaultOption={certificateData.status}
+                certificateId={certificateData.id}
+                disabled={false}
+              />
+            </>
+          )}
         </div>
         <div className="certificate-item-container__header__info">
-          <ButtonThree text="Przypomnij za 3 dni" onClick={scheduleEmail} />
+          {!isExpired && (
+            <ButtonThree text="Remind in 3 days" onClick={scheduleEmail} />
+          )}
         </div>
       </div>
     </div>

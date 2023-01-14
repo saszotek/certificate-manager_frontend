@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/controlpanelaccordion.scss";
 import ButtonThree from "../Button/ButtonThree";
@@ -11,7 +11,26 @@ import setDateTime from "../../util/setDateTime";
 function ControlPanelInvoiceAccordion({ invoiceData, index, customerName }) {
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
+  const [isExpired, setIsExpired] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const certificates = invoiceData.certificates;
+    let count = 0;
+
+    certificates.forEach((certificate) => {
+      if (
+        certificate.status === "Resigned" ||
+        certificate.status === "Expired"
+      ) {
+        count += 1;
+      }
+
+      if (count === certificates.length) {
+        setIsExpired(true);
+      }
+    });
+  }, [isExpired, invoiceData.certificates]);
 
   const exportReminders = async () => {
     await axios
@@ -64,7 +83,9 @@ function ControlPanelInvoiceAccordion({ invoiceData, index, customerName }) {
           />
         </div>
         <div className="control-panel-accordion-container__collapse-menu__item__wrapper-box__info">
-          <ButtonThree text="Export reminders" onClick={exportReminders} />
+          {!isExpired && (
+            <ButtonThree text="Export reminders" onClick={exportReminders} />
+          )}
         </div>
       </div>
       <div className="control-panel-accordion-container__collapse-menu__item__button-box"></div>

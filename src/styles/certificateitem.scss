@@ -32,6 +32,10 @@
                 width: 190px;
             }
 
+            &:nth-child(7) {
+                width: 170px;
+            }
+
             p {
                 &:first-child {
                     font-size: 11px;
@@ -70,6 +74,12 @@
                     }
                 }
             }
+        }
+    }
+
+    .certificate-expired {
+        .certificate-item-container__header__info {
+            color: #686868;
         }
     }
 }

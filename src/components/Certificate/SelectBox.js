@@ -5,13 +5,16 @@ import "../../styles/selectbox.scss";
 import axios from "axios";
 import { useLocalState } from "../../util/useLocalState";
 
-function SelectBox({ items, defaultOption, certificateId }) {
+function SelectBox({ items, defaultOption, certificateId, disabled }) {
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [selectedItem, setSelectedItem] = useState(defaultOption);
   const [showItems, setShowItems] = useState(false);
 
   const dropDown = () => {
+    if (disabled) {
+      return;
+    }
     setShowItems((prevState) => !prevState);
   };
 
@@ -73,6 +76,7 @@ function SelectBox({ items, defaultOption, certificateId }) {
             !(item.value === selectedItem) ? (
               <div key={item.id} onClick={() => selectItem(item)}>
                 {item.value}
+                {disabled}
               </div>
             ) : (
               ""
