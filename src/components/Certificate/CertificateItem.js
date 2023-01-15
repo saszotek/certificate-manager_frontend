@@ -5,11 +5,14 @@ import { useLocalState } from "../../util/useLocalState";
 import ButtonThree from "../Button/ButtonThree";
 import SelectBox from "./SelectBox";
 import setDateTime from "../../util/setDateTime";
+import { useSelector } from "react-redux";
+import { userDetails } from "../../redux/slices/validateTokenSlice";
 
 function CertificateItem({ certificateData, index }) {
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [isExpired, setIsExpired] = useState(false);
+  const userDetailsLocal = useSelector(userDetails);
 
   useEffect(() => {
     if (
@@ -30,8 +33,12 @@ function CertificateItem({ certificateData, index }) {
   ];
 
   const scheduleEmail = () => {
+    const reqBody = {
+      email: userDetailsLocal.username,
+    };
+
     axios
-      .post(`/api/schedule/email/certificate/${certificateData.id}`, null, {
+      .post(`/api/schedule/email/certificate/${certificateData.id}`, reqBody, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${jwt}`,

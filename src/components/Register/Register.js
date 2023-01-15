@@ -5,24 +5,44 @@ import "../../styles/login.scss";
 import ButtonOne from "../Button/ButtonOne";
 import Input from "../Input/Input";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import * as yup from "yup";
 
 function Register() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (event) => {
+  let schema = yup.object().shape({
+    username: yup
+      .string()
+      .email("Email must be a valid email.")
+      .required("Email field is required."),
+    password: yup
+      .string()
+      .min(4, "Password must be at least 4 characters long.")
+      .required("Password field is required."),
+  });
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const reqBody = {
-      username: username,
+      username: email,
       password: password,
     };
 
+    try {
+      await schema.validate(reqBody);
+    } catch (error) {
+      console.log(error.errors);
+      setErrorMessage(error.errors);
+      return false;
+    }
+
     if (password !== passwordConfirm) {
-      setErrorMessage("Passwords should match!");
+      setErrorMessage("Passwords should match.");
       return false;
     }
 
@@ -36,7 +56,7 @@ function Register() {
       })
       .catch((error) => {
         console.log(`Registration failed! Status: ${error.response.status}`);
-        setErrorMessage("Username is already taken!");
+        setErrorMessage("Email is already taken.");
       });
   };
 
@@ -49,11 +69,10 @@ function Register() {
           {errorMessage && <ErrorMessage message={errorMessage} />}
           <Input
             type="text"
-            id="username"
-            value={username}
-            onChange={setUsername}
-            label="Username"
-            minLength="4"
+            id="email"
+            value={email}
+            onChange={setEmail}
+            label="Email"
           />
           <Input
             type="password"
@@ -61,7 +80,6 @@ function Register() {
             value={password}
             onChange={setPassword}
             label="Password"
-            minLength="4"
           />
           <Input
             type="password"
@@ -69,7 +87,6 @@ function Register() {
             value={passwordConfirm}
             onChange={setPasswordConfirm}
             label="Password confirmation"
-            minLength="4"
           />
           <div className="login-container__button-box">
             <ButtonOne type="submit" id="submit" text="Sign up" />

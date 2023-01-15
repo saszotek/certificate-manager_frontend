@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/input.scss";
 
 function Input(props) {
-  const { type, id, value, onChange, label, minLength, altColor } = props;
+  const { type, id, value, onChange, label, altColor } = props;
 
   return (
     <div
@@ -16,8 +16,6 @@ function Input(props) {
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        minLength={minLength}
-        required
       />
     </div>
   );

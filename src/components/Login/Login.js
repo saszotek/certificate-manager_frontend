@@ -9,7 +9,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
   // eslint-disable-next-line
@@ -19,7 +19,7 @@ function Login() {
     event.preventDefault();
 
     const reqBody = {
-      username: username,
+      username: email,
       password: password,
     };
 
@@ -46,14 +46,14 @@ function Login() {
           <h1>Log in</h1>
           <h1>Log in</h1>
           {isError && (
-            <ErrorMessage message="Username or password was incorrect. Please try again." />
+            <ErrorMessage message="Email or password was incorrect. Please try again." />
           )}
           <Input
             type="text"
-            id="username"
-            value={username}
-            onChange={setUsername}
-            label="Username"
+            id="email"
+            value={email}
+            onChange={setEmail}
+            label="Email"
           />
           <Input
             type="password"
