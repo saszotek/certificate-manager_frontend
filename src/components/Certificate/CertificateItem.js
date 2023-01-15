@@ -7,11 +7,15 @@ import SelectBox from "./SelectBox";
 import setDateTime from "../../util/setDateTime";
 import { useSelector } from "react-redux";
 import { userDetails } from "../../redux/slices/validateTokenSlice";
+import icons from "../../assets/icons/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CalendarPopup from "./CalendarPopup";
 
 function CertificateItem({ certificateData, index }) {
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [isExpired, setIsExpired] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const userDetailsLocal = useSelector(userDetails);
 
   useEffect(() => {
@@ -31,6 +35,10 @@ function CertificateItem({ certificateData, index }) {
     { value: "Resigned", id: 5 },
     { value: "Expired", id: 6 },
   ];
+
+  const handleCalendarPopup = () => {
+    setIsOpen(!isOpen);
+  };
 
   const scheduleEmail = () => {
     const reqBody = {
@@ -61,6 +69,7 @@ function CertificateItem({ certificateData, index }) {
       }
       key={index}
     >
+      {isOpen && <div className="popup-backdrop"></div>}
       <div
         className={
           isExpired
@@ -124,6 +133,23 @@ function CertificateItem({ certificateData, index }) {
         <div className="certificate-item-container__header__info">
           {!isExpired && (
             <ButtonThree text="Remind in 3 days" onClick={scheduleEmail} />
+          )}
+        </div>
+        <div className="certificate-item-container__header__info">
+          {!isExpired && (
+            <>
+              <p>Renew</p>
+              <button className="calendar-button" onClick={handleCalendarPopup}>
+                <FontAwesomeIcon icon={icons.faCalendarDays} />
+              </button>
+              {isOpen && (
+                <CalendarPopup
+                  handleCalendarPopup={handleCalendarPopup}
+                  expiryDate={certificateData.validTo}
+                  certificateId={certificateData.id}
+                />
+              )}
+            </>
           )}
         </div>
       </div>

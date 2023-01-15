@@ -7,7 +7,7 @@ const setDateTime = (date) => {
   });
   const time = ` - ${addZero(oldDate.getUTCHours())}:${addZero(
     oldDate.getUTCMinutes()
-  )}:${addZero(oldDate.getUTCSeconds())} UTC`;
+  )} UTC`;
   return newDate + time;
 };
 

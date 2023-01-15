@@ -8,6 +8,7 @@ import {
   faAnglesRight,
   faAngleDown,
   faAngleUp,
+  faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import fileDefault from "./file-default.png";
 import fileCsv from "./file-csv.png";
@@ -24,6 +25,7 @@ const icons = {
   faAnglesRight: faAnglesRight,
   faAngleDown: faAngleDown,
   faAngleUp: faAngleUp,
+  faCalendarDays: faCalendarDays,
   fileDefault: fileDefault,
   csv: fileCsv,
   eml: fileEml,
