@@ -147,6 +147,7 @@ function CertificateItem({ certificateData, index }) {
                   handleCalendarPopup={handleCalendarPopup}
                   expiryDate={certificateData.validTo}
                   certificateId={certificateData.id}
+                  certificateSerialNumber={certificateData.serialNumber}
                 />
               )}
             </>
