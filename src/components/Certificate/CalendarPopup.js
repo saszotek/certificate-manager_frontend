@@ -15,7 +15,9 @@ function CalendarPopup(props) {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleConfirm = async () => {
-    const dateIso = selectedDate.toISOString();
+    const dateIso = new Date(
+      selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000
+    ).toISOString();
 
     const reqBody = {
       validTo: dateIso,

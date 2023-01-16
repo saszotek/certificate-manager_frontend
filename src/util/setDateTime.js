@@ -5,9 +5,9 @@ const setDateTime = (date) => {
     month: "2-digit",
     day: "2-digit",
   });
-  const time = ` - ${addZero(oldDate.getUTCHours())}:${addZero(
-    oldDate.getUTCMinutes()
-  )} UTC`;
+  const time = ` - ${addZero(oldDate.getHours())}:${addZero(
+    oldDate.getMinutes()
+  )} CET`;
   return newDate + time;
 };
 
