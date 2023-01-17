@@ -5,7 +5,9 @@ import "../../styles/selectbox.scss";
 import axios from "axios";
 import { useLocalState } from "../../util/useLocalState";
 
-function SelectBox({ items, defaultOption, certificateId, disabled }) {
+function SelectBox(props) {
+  const { items, defaultOption, certificateId, disabled, setIsExpired } = props;
+
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [selectedItem, setSelectedItem] = useState(defaultOption);
@@ -24,17 +26,23 @@ function SelectBox({ items, defaultOption, certificateId, disabled }) {
     updateStatus(item.value);
   };
 
-  const updateStatus = (item) => {
+  const updateStatus = async (item) => {
     let reqBody = {
       status: item,
     };
 
-    axios
+    await axios
       .put(`api/certificate/update/${certificateId}/status`, reqBody, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${jwt}`,
         },
+      })
+      .then((response) => {
+        console.log(response);
+        if (reqBody.status === "Expired" || reqBody.status === "Resigned") {
+          setIsExpired(true);
+        }
       })
       .catch((error) => {
         console.error(error);

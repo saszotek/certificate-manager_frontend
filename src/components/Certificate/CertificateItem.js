@@ -16,6 +16,7 @@ function CertificateItem({ certificateData, index }) {
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [isExpired, setIsExpired] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [validTo, setValidTo] = useState(certificateData.validTo);
   const userDetailsLocal = useSelector(userDetails);
 
   useEffect(() => {
@@ -92,7 +93,7 @@ function CertificateItem({ certificateData, index }) {
         <div className="certificate-item-container__header__info">
           <p>Valid to</p>
           <p>
-            <span>{setDateTime(certificateData.validTo)}</span>
+            <span>{setDateTime(validTo)}</span>
           </p>
         </div>
         <div className="certificate-item-container__header__info">
@@ -126,13 +127,14 @@ function CertificateItem({ certificateData, index }) {
                 defaultOption={certificateData.status}
                 certificateId={certificateData.id}
                 disabled={false}
+                setIsExpired={setIsExpired}
               />
             </>
           )}
         </div>
         <div className="certificate-item-container__header__info">
           {!isExpired && (
-            <ButtonThree text="Remind in 3 days" onClick={scheduleEmail} />
+            <ButtonThree text="Remind in a day" onClick={scheduleEmail} />
           )}
         </div>
         <div className="certificate-item-container__header__info">
@@ -147,6 +149,7 @@ function CertificateItem({ certificateData, index }) {
                   handleCalendarPopup={handleCalendarPopup}
                   expiryDate={certificateData.validTo}
                   certificateId={certificateData.id}
+                  setValidTo={setValidTo}
                 />
               )}
             </>

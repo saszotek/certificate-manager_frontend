@@ -8,7 +8,7 @@ import axios from "axios";
 import { useLocalState } from "../../util/useLocalState";
 
 function CalendarPopup(props) {
-  const { handleCalendarPopup, expiryDate, certificateId } = props;
+  const { handleCalendarPopup, expiryDate, certificateId, setValidTo } = props;
 
   // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
@@ -29,6 +29,10 @@ function CalendarPopup(props) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${jwt}`,
         },
+      })
+      .then((response) => {
+        console.log(response);
+        setValidTo(selectedDate);
       })
       .catch((error) => {
         console.error(error);
