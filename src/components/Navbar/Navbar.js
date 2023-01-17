@@ -13,6 +13,7 @@ import {
 } from "../../redux/slices/validateTokenSlice";
 
 function Navbar() {
+  // eslint-disable-next-line
   const [jwt, setJwt] = useLocalState("", "jwt");
   const isLoggedLocal = useSelector(isLogged);
   const statusLoggedLocal = useSelector(statusLogged);
@@ -26,9 +27,8 @@ function Navbar() {
   }, [statusLoggedLocal, dispatch, jwt]);
 
   const handleLogout = () => {
-    setJwt("");
+    localStorage.removeItem("jwt");
     window.location.reload();
-    navigate("/home");
   };
 
   return (
