@@ -47,6 +47,25 @@
         }
     }
 
+    .control-panel-container__order-button {
+        button {
+            margin-left: 40px;
+            padding: 5px 10px;
+            color: variables.$background-color-fifth;
+            font-size: 15px;
+            background-color: #fff;
+            border: 3px solid variables.$background-color-fifth;
+            border-radius: 10px;
+            cursor: pointer;
+
+            span {
+                display: inline-block;
+                margin-left: 10px;
+                vertical-align: middle;
+            }
+        }
+    }
+
     .control-panel-container__wrapper {
         background-color: #fff;
         border: 3px solid variables.$background-color-fifth;

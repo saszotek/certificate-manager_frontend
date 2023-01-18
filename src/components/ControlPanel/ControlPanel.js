@@ -17,16 +17,20 @@ function ControlPanel() {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [selected, setSelected] = useState(null);
+  const [order, setOrder] = useState("asc");
 
   useEffect(() => {
     async function getCustomers() {
       await axios
-        .get(`/api/customer/find/all?page=${currentPage}&email=${email}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwt}`,
-          },
-        })
+        .get(
+          `/api/customer/find/all?page=${currentPage}&order=${order}&email=${email}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
         .then((response) => {
           console.log(response.data);
           setTotalPages(response.data.totalPages);
@@ -39,7 +43,7 @@ function ControlPanel() {
     }
 
     getCustomers();
-  }, [currentPage, email, jwt]);
+  }, [currentPage, email, jwt, order]);
 
   const previousPage = () => {
     if (!(currentPage === 0)) {
@@ -72,6 +76,14 @@ function ControlPanel() {
     setSelected(index);
   };
 
+  const handleOrder = () => {
+    if (order === "asc") {
+      setOrder("desc");
+    } else {
+      setOrder("asc");
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -91,6 +103,18 @@ function ControlPanel() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+            </div>
+            <div className="control-panel-container__order-button">
+              <button onClick={handleOrder}>
+                Sort by expiry date
+                <span>
+                  {order === "asc" ? (
+                    <FontAwesomeIcon icon={icons.faArrowUp} />
+                  ) : (
+                    <FontAwesomeIcon icon={icons.faArrowDown} />
+                  )}
+                </span>
+              </button>
             </div>
           </div>
           <div className="control-panel-container__wrapper">

@@ -8,11 +8,11 @@
         flex-wrap: wrap;
         padding: 15px 20px;
         border-top: 2px solid variables.$background-color-secondary;
+        color: variables.$background-color-fifth;
         cursor: pointer;
 
         .control-panel-accordion-container__header__info {
             padding: 0 10px;
-            color: variables.$background-color-fifth;
             text-align: center;
 
             &:nth-child(1),
@@ -54,6 +54,22 @@
                 font-size: 27px;
             }
         }
+    }
+
+    .less-than-60 {
+        color: #06c000;
+    }
+
+    .less-than-30 {
+        color: #9a00c0;
+    }
+
+    .less-than-14 {
+        color: #c7c400;
+    }
+
+    .less-than-7 {
+        color: #dd0000;
     }
 
     .control-panel-accordion-container__collapse-menu {

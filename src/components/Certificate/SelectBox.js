@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "../../styles/selectbox.scss";
-// import icons from "../../assets/icons/icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useLocalState } from "../../util/useLocalState";
 
@@ -63,15 +61,6 @@ function SelectBox(props) {
           <div className="select-box__container__box__selected-item">
             {selectedItem}
           </div>
-          {/* <div className="select-box__container__box__arrow">
-            <span>
-              {showItems ? (
-                <FontAwesomeIcon icon={icons.faAngleUp} />
-              ) : (
-                <FontAwesomeIcon icon={icons.faAngleDown} />
-              )}
-            </span>
-          </div> */}
         </div>
         <div
           className={
