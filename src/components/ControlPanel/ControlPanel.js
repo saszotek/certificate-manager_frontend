@@ -88,10 +88,6 @@ function ControlPanel() {
     <>
       {isLoading ? (
         <Loader />
-      ) : totalPages === 0 ? (
-        <div className="control-panel-container">
-          <h2>Import customers to load control panel</h2>
-        </div>
       ) : (
         <div className="control-panel-container">
           <h1>Control Panel</h1>
