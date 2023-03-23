@@ -20,3 +20,4 @@ Server-side pagination has been implemented to prevent page overload in case of 
 - React Router 
 - Axios
 - Yup
+- SCSS
