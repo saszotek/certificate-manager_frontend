@@ -7,7 +7,7 @@ Application allows you to create an account or log into an existing one in order
 - extending its validity period,
 - sending a reminder email.
 
-The system lets users generate reminders, that is a file containing the expiration dates of documents. The file can be imported into online calendars (eg. Google Calendar).
+The system lets users generate reminders, that is a file containing the expiration dates of documents. The file can be imported into online calendars (e.g. Google Calendar).
 Server-side pagination has been implemented to prevent page overload in case of a large number of documents imported into the system.
 
 ## Live version
