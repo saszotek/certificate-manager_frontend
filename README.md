@@ -1,6 +1,7 @@
 # Certificate Manager - Frontend
 
 **This repository is frontend part of a database system supporting the management of expiring certificates.**
+**The description below describes only the frontend part.**
 Frontend part of Certificate Manager application is integrated with [certificate-manager_backend](https://github.com/saszotek/certificate-manager_backend) repository.
 Application allows you to create an account or log into an existing one in order to manage qualified certificates. The main element of the application is the control panel that allows the user to manage imported client certificates by:
 - change of its status,
